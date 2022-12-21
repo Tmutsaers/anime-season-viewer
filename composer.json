@@ -1,0 +1,11 @@
+{
+    "require": {
+        "smarty/smarty" : "^3",
+        "guzzlehttp/guzzle": "^7.5"
+    },
+    "autoload": {
+        "psr-4": {
+            "Module\\": "modules/"
+        }
+    }
+}

@@ -1,0 +1,27 @@
+@import './elements/**/*';
+
+body {
+    @apply relative;
+    @apply bg-gray-600;
+
+    .wrap {
+        @apply max-w-1176 mx-auto;
+
+        @apply lg:px-12;
+        @apply md:px-9;
+        @apply sm:px-6;
+        @apply xs:px-mob;
+    }
+
+    h1 {
+        @apply font-fontTitle text-white;
+    }
+
+    p {
+        @apply font-fontText text-white;
+    }
+
+    .block-link {
+        @apply absolute inset-0;
+    }
+}

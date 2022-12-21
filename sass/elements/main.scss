@@ -1,0 +1,43 @@
+.animes_container{
+    @apply my-10;
+    .animes__inner-title {
+
+    }
+
+    .animes__inner {
+        @apply grid grid-cols-12 gap-9;
+        @apply pt-5;
+
+        .anime-container {
+            @apply col-span-3 relative;
+            @apply bg-gray-500;
+
+            .anime__inner {
+                @apply flex flex-col;
+                @apply h-full;
+                .anime__inner-image {
+                    @apply w-full relative;
+                    @apply h-full max-h-[400px];
+
+                    img {
+                        @apply w-full;
+                        @apply h-full;
+                    }
+                }
+    
+                .anime__inner-title {
+                    @apply uppercase mx-auto;
+                }
+
+                .anime__inner-description {
+                    @apply max-h-20 overflow-hidden;
+                    @apply py-2 px-2;
+
+                    &:hover {
+                        @apply overflow-auto;
+                    }
+                }
+            }
+        }
+    }
+}
