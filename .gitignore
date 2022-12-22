@@ -1,0 +1,7 @@
+/public_html/css/*
+/public_html/cache/*
+/compile/*
+
+
+node_modules
+shell.sh
