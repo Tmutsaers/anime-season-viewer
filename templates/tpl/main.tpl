@@ -8,18 +8,24 @@
         {foreach $animes as $value}
             <div class="anime-container">
                 <div class="anime__inner">
+                
+                <div class="anime__inner-top">
+                    <div class="anime__inner-day">
+                        <h2>{$value->day}</h2>
+                    </div>
                     <div class="anime__inner-image">
-                        <img src="{$value['images']['jpg']['image_url']}">
-                        <a class="block-link" href="{$value['url']}"></a>
+                        <img src="{$value->image}">
+                        <a class="block-link" href="{$value->url}"></a>
                     </div>
+                </div>
 
-                    <div class="anime__inner-title">
-                        <p>{$value['titles'][0]['title']}</p>
-                    </div>
+                <div class="anime__inner-title">
+                    <h2>{$value->name}</h2>
+                </div>
 
-                    <div class="anime__inner-description">
-                        <p>{$value['synopsis']}</p>
-                    </div>
+                <div class="anime__inner-description">
+                    <p>{$value->description}</p>
+                </div>
 
                 </div>
             </div>

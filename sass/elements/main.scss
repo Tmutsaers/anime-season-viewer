@@ -13,20 +13,29 @@
             @apply bg-gray-500;
 
             .anime__inner {
-                @apply flex flex-col;
+                @apply flex flex-col justify-between;
                 @apply h-full;
+
+                .anime__inner-top {
+                    &:hover {
+                        @apply drop-shadow-2xl;
+                    }
+                }
+
+                .anime__inner-day {
+                    @apply flex justify-center;
+                }
+
                 .anime__inner-image {
-                    @apply w-full relative;
-                    @apply h-full max-h-[400px];
+                    @apply flex justify-center relative;
 
                     img {
-                        @apply w-full;
-                        @apply h-full;
+                        @apply w-full max-h-[375px];
                     }
                 }
     
                 .anime__inner-title {
-                    @apply uppercase mx-auto;
+                    @apply uppercase mx-auto text-center;
                 }
 
                 .anime__inner-description {
