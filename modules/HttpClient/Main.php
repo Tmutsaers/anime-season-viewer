@@ -25,9 +25,10 @@ class Main
         foreach($data['data'] as $anime => $anime_value)
         {
             $anime = new Anime();
-            $anime->name = $anime_value['titles'][0]['title'];
+            //$anime->name = $anime_value['titles'][0]['title'];
+            $anime->name = is_null($anime_value['title_english']) ? $anime_value['title'] : $anime_value['title_english'];
             $anime->image = $anime_value['images']['jpg']['image_url'];
-            $anime->description = $anime_value['synopsis'];
+            $anime->description = is_null($anime_value['synopsis']) ? "No description given by MAL." : $anime_value['synopsis'];
             $anime->day = $anime_value['broadcast']['day'];
             $anime->url = $anime_value['url'];
             $animeSeason[] = $anime;

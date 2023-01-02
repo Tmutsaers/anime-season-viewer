@@ -31,6 +31,9 @@ module.exports = {
       maxWidth: {
         1176: "1176px",
     },
+    boxShadow: {
+      hover: '0px 12px 24px #00000030',
+    },
     },
   },
   plugins: [

@@ -1,50 +1,75 @@
 .animes_container{
     @apply my-10;
-    .animes__inner-title {
+    .animes_inner-title {
 
     }
 
-    .animes__inner {
+    .animes_inner {
         @apply grid grid-cols-12 gap-9;
         @apply pt-5;
 
         .anime-container {
-            @apply col-span-3 relative;
+            @apply col-span-4 relative rounded-lg;
             @apply bg-gray-500;
 
+            @apply md:col-span-6;
+            @apply mob:col-span-12;
+
+            &:hover {
+                @apply shadow-hover;
+            }
+
             .anime__inner {
-                @apply flex flex-col justify-between;
+                @apply flex flex-col;
                 @apply h-full;
 
                 .anime__inner-top {
-                    &:hover {
-                        @apply drop-shadow-2xl;
+                    .anime__inner-day {
+                        @apply flex justify-center;
                     }
-                }
-
-                .anime__inner-day {
-                    @apply flex justify-center;
-                }
-
-                .anime__inner-image {
-                    @apply flex justify-center relative;
-
-                    img {
-                        @apply w-full max-h-[375px];
-                    }
-                }
     
-                .anime__inner-title {
-                    @apply uppercase mx-auto text-center;
+                    .anime__inner-image {
+                        @apply flex justify-center relative;
+                        @apply mx-[50px];
+    
+                        img {
+                            @apply w-full max-h-[375px] rounded-md;
+                        }
+                    }
                 }
 
-                .anime__inner-description {
-                    @apply max-h-20 overflow-hidden;
-                    @apply py-2 px-2;
+                .anime__inner-bottom {
+                    @apply h-full;
+                    @apply mx-[20px];
+
+                    .anime__inner-title {
+                        @apply uppercase mx-auto text-center w-full;
+                        
+                        h2 {
+                            @apply text-ellipsis overflow-hidden max-h-[2.1em];
+                            @apply mb-0;
+                        }
+                    }
+    
+                    .anime__inner-description {
+                        @apply max-h-20 overflow-hidden;
+                        @apply py-2 px-2 mt-[20px] mb-[20px];
+    
+                        &:hover {
+                            @apply overflow-auto;
+                        }
+                    }
 
                     &:hover {
-                        @apply overflow-auto;
+                        .anime__inner-title {
+                            h2 {
+                                @apply max-h-full;
+                            }
+                        }
+
+                        
                     }
+
                 }
             }
         }

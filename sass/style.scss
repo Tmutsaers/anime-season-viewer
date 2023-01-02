@@ -13,19 +13,32 @@ body {
         @apply xs:px-mob;
     }
 
-    h1 {
+    h1,h2,.anime__inner-description {
         @apply font-fontTitle text-white;
     }
 
-    h2 {
-        @apply font-fontTitle text-white;
-    }
-
-    p {
-        @apply font-fontText text-white;
-    }
 
     .block-link {
         @apply absolute inset-0;
+    }
+
+    .anime__inner-description::-webkit-scrollbar {
+        width: 20px;
+        height: 20px;
+    }
+    
+    .anime__inner-description::-webkit-scrollbar-track {
+    border-radius: 100vh;
+    background: #f7f4ed;
+    }
+    
+    .anime__inner-description::-webkit-scrollbar-thumb {
+    background: #e0cbcb;
+    border-radius: 100vh;
+    border: 3px solid #f6f7ed;
+    }
+    
+    .anime__inner-description::-webkit-scrollbar-thumb:hover {
+    background: #c0a0b9;
     }
 }

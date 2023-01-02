@@ -22,7 +22,7 @@ mix
     .options( {
         processCssUrls: false,
         postCss: [
-            tailwindcss('tailwind.config.js'),
+            tailwindcss('./tailwind.config.js'),
         ],
         watchOptions: {
             ignored: /node_modules/
