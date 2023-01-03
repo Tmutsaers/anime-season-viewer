@@ -13,7 +13,19 @@ class Main
         return "The Function Works!";
     }
 
-    public static function testJSON(): array
+    public function getSeason($year,$season): array
+    {        
+        $client = new \GuzzleHttp\Client();
+        $response = $client->request('GET', sprintf('https://api.jikan.moe/v4/seasons/%d/%s',$year,$season));
+        $data = json_decode(((String)$response->getBody()),true);
+
+        $animeSeason = array();
+        $animeSeason = $this->processSeasonJSON($data);
+
+        return $animeSeason;
+    }
+
+    public function getCurrentSeason(): array
     {
         $client = new \GuzzleHttp\Client();
         // $response = $client->request('GET', 'https://api.jikan.moe/v4/schedules?sfw=true');
@@ -22,7 +34,18 @@ class Main
 
         $animeSeason = array();
 
-        foreach($data['data'] as $anime => $anime_value)
+        $animeSeason = $this->processSeasonJSON($data);
+
+        return $animeSeason;
+
+        return $data['data'];
+    }
+
+    public function processSeasonJSON($jsonArray): array 
+    {
+        $animeSeason = array();
+
+        foreach($jsonArray['data'] as $anime => $anime_value)
         {
             $anime = new Anime();
             //$anime->name = $anime_value['titles'][0]['title'];
@@ -46,13 +69,9 @@ class Main
             return ($days[$a->day] < $days[$b->day]) ? -1 : 1;
         });
 
-
         return $animeSeason;
-
-        return $data['data'];
     }
-} 
-
+}
 
 
 ?>

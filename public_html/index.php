@@ -10,4 +10,11 @@
     $smarty->setCacheDir('../cache');
 //$smarty->testInstall();
     $smarty->display('index.tpl');
+
+    // if(empty($_GET['page'])) 
+    // {
+    //     $template = "main.tpl";
+    //     $smarty->assign('currentPage', 'main')
+    // }
+
  ?>

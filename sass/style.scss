@@ -22,6 +22,10 @@ body {
         @apply absolute inset-0;
     }
 
+    .hide {
+        position:absolute; top:-1px; left:-1px; width:1px; height:1px; display:none;
+    }
+
     .anime__inner-description::-webkit-scrollbar {
         width: 20px;
         height: 20px;

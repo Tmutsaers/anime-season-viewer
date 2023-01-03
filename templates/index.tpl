@@ -8,7 +8,8 @@
 </head>
 <body>
     <div class="wrap main-container">
-        {include file="./tpl/main.tpl"}
+    
+        {include file="./tpl/seasonpicker.tpl"}
         
     </div>
 
