@@ -4,6 +4,8 @@
 
     $smarty = new Smarty();
 
+    $GLOBALS['smarty'] = $smarty;
+
     $smarty->setTemplateDir('../templates');
     $smarty->setConfigDir('../config');
     $smarty->setCompileDir('../compile');

@@ -8,6 +8,12 @@ use Module\HttpClient\Weekdays;
 
 class Main 
 {
+    public static function onlyCreateClient()
+    {
+        $client = new \GuzzleHttp\Client();
+    }
+
+
     public static function getString(): string 
     {
         return "The Function Works!";
@@ -27,6 +33,18 @@ class Main
         return $test;
     }
 
+    public static function getSeasonStatic($year,$season): array
+    {        
+        $client = new \GuzzleHttp\Client();
+        $response = $client->request('GET', sprintf('https://api.jikan.moe/v4/seasons/%d/%s',$year,$season));
+        $data = json_decode(((String)$response->getBody()),true);
+
+        $animeSeason = array();
+        $animeSeason = self::processSeasonJSON($data);
+
+        return $animeSeason;
+    }
+
     public function getSeason($year,$season): array
     {        
         $client = new \GuzzleHttp\Client();
@@ -34,7 +52,7 @@ class Main
         $data = json_decode(((String)$response->getBody()),true);
 
         $animeSeason = array();
-        $animeSeason = $this->processSeasonJSON($data);
+        $animeSeason = self::processSeasonJSON($data);
 
         return $animeSeason;
     }
@@ -48,14 +66,14 @@ class Main
 
         $animeSeason = array();
 
-        $animeSeason = $this->processSeasonJSON($data);
+        $animeSeason = self::processSeasonJSON($data);
 
         return $animeSeason;
 
         return $data['data'];
     }
 
-    public function processSeasonJSON($jsonArray): array 
+    public static function processSeasonJSON($jsonArray): array 
     {
         $animeSeason = array();
 
