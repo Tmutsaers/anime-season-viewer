@@ -13,6 +13,20 @@ class Main
         return "The Function Works!";
     }
 
+    public function getTest2($year): array
+    {
+        $test = array();
+        $test[] = $year;
+        return $test;
+    }
+
+    public static function getTest(): array
+    {
+        $test = array();
+        $test = self::getSeason(2020,"winter");
+        return $test;
+    }
+
     public function getSeason($year,$season): array
     {        
         $client = new \GuzzleHttp\Client();
