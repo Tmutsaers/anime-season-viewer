@@ -1,4 +1,3 @@
-{$animes = null}
 <div class="seasonpicker_container">
     <div class="seasonpicker_title">
         <h2> Pick a year and season </h2>
@@ -15,21 +14,17 @@
 
         <iframe name="hiddenFrame" class="hide"></iframe>
 
-        <form class="seasonpicker__inner-form" action="/Formhandler.php" target="_blank" method="post">
+        <form class="seasonpicker__inner-form" action="{$SCRIPT_NAME}?action=submit" method="post">
             <label for="yearInput">Year</label>
-            <input type="text" id="yearInput" value='2022' name="year"><br><br>
+            <input type="text" id="yearInput" name="year"><br><br>
             <label for="seasonInput">Season</label>
-            <input type="text" id="seasonInput" value="winter" name="season"><br><br>
+            <input type="text" id="seasonInput" name="season"><br><br>
             <input type="submit" value="Submit">
         </form>
-        {debug}
-        {* <button class="seasonpicker__inner-button" id="formBTN">
-            test
-        </button>
-        <p id="testElement">Test </p> *}
+        
     </div>
 </div>
-{if !empty($animes)}
+{if isset($animes)}
     <div class="animes_container">
         <div class="animes__inner-title">
             <h1 class="animes-general-title">Animes airing this season.</h1>
@@ -64,14 +59,3 @@
         </div>
     </div>    
 {/if}
-
-<script>
-    document.getElementById("formBTN").addEventListener("click", function() 
-    {
-        var year = document.getElementById("yearInput").value;
-        var season = document.getElementById("seasonInput").value;        
-
-        // document.getElementById("testElement").innerHTML = season;
-    });
-
-</script>

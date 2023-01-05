@@ -2,21 +2,39 @@
 
     require_once __DIR__.'../../vendor/autoload.php';
 
-    $smarty = new Smarty();
+    require './AnimeManager.php';
 
-    $GLOBALS['smarty'] = $smarty;
+    $animeManager = new AnimeManager();
 
-    $smarty->setTemplateDir('../templates');
-    $smarty->setConfigDir('../config');
-    $smarty->setCompileDir('../compile');
-    $smarty->setCacheDir('../cache');
+    //$animeManager->displayEmptySeasonPicker();
+
+    $_action = isset($_REQUEST['action']) ? $_REQUEST['action'] : 'currentSeason';
+
+    switch($_action)
+    {
+
+        case 'submit':
+            //var_dump($_POST);
+            $animeManager->displaySeasonPicked($_POST);
+            break;
+
+        case 'pickSeason':
+            $animeManager->displayEmptySeasonPicker();
+            break;
+        
+        case 'currentSeason':
+            default:
+            //$animeManager->displayCurrentSeason();
+            $animeManager->displayEmptySeasonPicker();
+            break;
+    }
+
+
+    //$smarty = new Smarty();
+
+    // $smarty = SmartySingleton::instance();
+
 //$smarty->testInstall();
-    $smarty->display('index.tpl');
-
-    // if(empty($_GET['page'])) 
-    // {
-    //     $template = "main.tpl";
-    //     $smarty->assign('currentPage', 'main')
-    // }
-
+    // $smarty->display('index.tpl');
+    
  ?>
