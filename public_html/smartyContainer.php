@@ -40,9 +40,7 @@ class SmartySingleton
             $smarty->setCompileDir('../compile');
             $smarty->setCacheDir('../cache');
 
-            // $smarty->caching = Smarty::CACHING_LIFETIME_CURRENT;
-
-            #define( 'CFG_DIR_TEMPLATES', $smarty->getTemplateDir(0) );
+            // $smarty->caching = Smarty::CACHING_LIFETIME_CURRENT;            
             
             self::$instance = $smarty;
         };

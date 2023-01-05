@@ -56,21 +56,6 @@ class Handler
     }
 }
 
-
-
-// switch($request)
-// {
-//     case "post":
-//         Handler::handlePost($year,$season);
-//         break;
-//     case "get":
-//         Handler::handleGet();
-//         break;
-// }
-
-//Handler::handlePost($year,$season);
-//var_dump(Handler::handleGet());
-
 // Working curl 
 //------------------------------------------------------------------------------------
 // $cUrlConnection = curl_init();

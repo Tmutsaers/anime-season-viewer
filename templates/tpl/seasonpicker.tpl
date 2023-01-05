@@ -12,8 +12,6 @@
 
         </div> *}
 
-        <iframe name="hiddenFrame" class="hide"></iframe>
-
         <form class="seasonpicker__inner-form" action="{$SCRIPT_NAME}?action=submit" method="post">
             <label for="yearInput">Year</label>
             <input type="text" id="yearInput" name="year"><br><br>
@@ -21,7 +19,7 @@
             <input type="text" id="seasonInput" name="season"><br><br>
             <input type="submit" value="Submit">
         </form>
-        
+
     </div>
 </div>
 {if isset($animes)}
