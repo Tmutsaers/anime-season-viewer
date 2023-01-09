@@ -1,0 +1,7 @@
+RewriteEngine on
+
+RewriteCond %{HTTP_HOST} ^test-project\.loc$ [NC]
+RewriteCond %{THE_REQUEST} ^(.+)\.php(\?\S*)?\ [NC]
+RewriteRule ^ /home? [L,R]
+
+RewriteRule ^home/?$ /index.php?action=submit [L]

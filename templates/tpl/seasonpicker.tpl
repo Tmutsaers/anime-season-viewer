@@ -12,13 +12,26 @@
 
         </div> *}
 
-        <form class="seasonpicker__inner-form" action="{$SCRIPT_NAME}?action=submit" method="post">
+        <form class="seasonpicker__inner-form" id="datepickerForm" action="{$SCRIPT_NAME}?action=submit" method="post">
             <label for="yearInput">Year</label>
-            <input type="text" id="yearInput" name="year"><br><br>
-            <label for="seasonInput">Season</label>
-            <input type="text" id="seasonInput" name="season"><br><br>
-            <input type="submit" value="Submit">
+            {* <input type="text" id="yearInput" value="{$YEAR_VALUE}" name="year"><br><br> *}
+            <input type="number" id="yearInput" value="{$YEAR_VALUE}" name="year" min="1970" max="2023"><br><br>
+            {* <label for="seasonInput">Season</label>
+            <input type="text" id="seasonInput" value="{$SEASON_VALUE}" name="season"><br><br> *}
+            {* <input type="submit" value="Submit"> *}
         </form>
+
+        <label for="seasonInput">Season</label>
+        <select name="season" id="seasonInput" form="datepickerForm">
+            <option value="{$SEASON_VALUE}" selected hidden>{$SEASON_VALUE}</option>
+            <option value="Winter">Winter</option>
+            <option value="Fall">Fall</option>
+            <option value="Spring">Spring</option>
+            <option value="Summer">Summer</option>
+        </select><br><br>
+
+        <input type="submit" form="datepickerForm" value="Submit">
+
 
     </div>
 </div>

@@ -6,9 +6,13 @@
 
     $animeManager = new AnimeManager();
 
-    //$animeManager->displayEmptySeasonPicker();
-
     $_action = isset($_REQUEST['action']) ? $_REQUEST['action'] : 'currentSeason';
+
+    // $animeManager->displayEmptySeasonPicker();
+
+    // var_dump($_GET);
+    // echo("==============================================================");
+    // var_dump($_SERVER);
 
     switch($_action)
     {
@@ -16,6 +20,7 @@
         case 'submit':
             //var_dump($_POST);
             $animeManager->displaySeasonPicked($_POST);
+            var_dump($_SERVER['REQUEST_URI']);
             break;
 
         case 'pickSeason':
@@ -28,13 +33,5 @@
             $animeManager->displayEmptySeasonPicker();
             break;
     }
-
-
-    //$smarty = new Smarty();
-
-    // $smarty = SmartySingleton::instance();
-
-//$smarty->testInstall();
-    // $smarty->display('index.tpl');
     
  ?>
