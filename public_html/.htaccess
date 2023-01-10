@@ -1,7 +1,10 @@
-RewriteEngine on
+### CURRENT ISSUE making the browser redirect from test-project.loc/index.php to test-project.loc/home somehow
+### makes the seasonpicker unable to function (parameters are not being passed (possibly caused by the index
+### not getting a submit parameter and thus selecting the display emptyseasonpicker))
+# RewriteEngine on
 
-RewriteCond %{HTTP_HOST} ^test-project\.loc$ [NC]
-RewriteCond %{THE_REQUEST} ^(.+)\.php(\?\S*)?\ [NC]
-RewriteRule ^ /home? [L,R]
+# RewriteCond %{HTTP_HOST} ^test-project\.loc$ [NC]
+# RewriteCond %{THE_REQUEST} ^(.+)\.php(\?\S*)? [NC]
+# RewriteRule ^ /home? [L,R]
 
-RewriteRule ^home/?$ /index.php?action=submit [L]
+# RewriteRule ^home/?$ /index.php?action=submit [L]
