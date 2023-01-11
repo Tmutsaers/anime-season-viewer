@@ -17,10 +17,8 @@
     switch($_action)
     {
 
-        case 'submit':
-            //var_dump($_POST);
+        case 'submit':            
             $animeManager->displaySeasonPicked($_POST);
-            // var_dump($_SERVER['REQUEST_URI']);
             break;
 
         case 'pickSeason':

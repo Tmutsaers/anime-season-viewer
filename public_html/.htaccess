@@ -1,10 +1,50 @@
 ### CURRENT ISSUE making the browser redirect from test-project.loc/index.php to test-project.loc/home somehow
 ### makes the seasonpicker unable to function (parameters are not being passed (possibly caused by the index
 ### not getting a submit parameter and thus selecting the display emptyseasonpicker))
-# RewriteEngine on
+RewriteEngine on
+
+#RewriteCond %{HTTP_HOST} ^test-project\.loc$ [NC]
+
+RewriteCond %{THE_REQUEST} ^(.+)\.php(\?\S*)? [NC]
+RewriteRule ^index\.php$ /home [QSA,L,R=307]
+
+RewriteRule ^home$ /index.php [L]
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+###=========================================================================================================
+# RewriteRule ^home\?action=submit$ /index.php?action=submit [L]
 
 # RewriteCond %{HTTP_HOST} ^test-project\.loc$ [NC]
-# RewriteCond %{THE_REQUEST} ^(.+)\.php(\?\S*)? [NC]
-# RewriteRule ^ /home? [L,R]
+# RewriteCond %{THE_REQUEST} ^(.+)\.php(\?\S*)?  [NC]
+# RewriteRule ^index\.php\?action=submit$ /home/pickedSeason [L,R]
 
-# RewriteRule ^home/?$ /index.php?action=submit [L]
+# RewriteCond %{THE_REQUEST} ^(.+)\.php(\?\S*)? [NC]
+# RewriteRule ^home$ /index.php [L]
+
+# RewriteCond %{REQUEST_FILENAME} !-f
+# RewriteCond %{REQUEST_FILENAME} !-d
+# RewriteRule ^(.*) index.php [NC,L]
+
+# RewriteRule ^(.*) index.php
+
+#RewriteRule action=submit index.php?action=submit [P]
+
+# RewriteRule ^action=submit$ /home [P]
+
+# RewriteCond %{SCRIPT_FILENAME} ^index\.php$ [NC]
+# RewriteRule ^ /home [L,R]
+
+# RewriteCond %{REQUEST_URI} ^index\.php\?action=(.*)$ [NC]
+# RewriteRule 
