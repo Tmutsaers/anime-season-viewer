@@ -3,22 +3,10 @@
         <h2> Pick a year and season </h2>
     </div>
     <div class="seasonpicker__inner">
-        {* <div class="seasonpicker__inner-year">
-            <p></p>
-            <input></input>
-        </div>
-        <div class="seasonpicker__inner-season">
-            <p></p>
-
-        </div> *}
-
-        <form class="seasonpicker__inner-form" id="datepickerForm" action="{$SCRIPT_NAME}?action=submit" method="post">
+        <form class="seasonpicker__inner-form" id="datepickerForm" action="seasonPicker" method="post">
             <label for="yearInput">Year</label>
-            {* <input type="text" id="yearInput" value="{$YEAR_VALUE}" name="year"><br><br> *}
             <input type="number" id="yearInput" value="{$YEAR_VALUE}" name="year" min="1970" max="2023"><br><br>
-            {* <label for="seasonInput">Season</label>
-            <input type="text" id="seasonInput" value="{$SEASON_VALUE}" name="season"><br><br> *}
-            {* <input type="submit" value="Submit"> *}
+            <input type="hidden" name="action" value="submit"/>
         </form>
 
         <label for="seasonInput">Season</label>

@@ -17,7 +17,7 @@
     switch($_action)
     {
 
-        case 'submit':            
+        case 'submit':
             $animeManager->displaySeasonPicked($_POST);
             break;
 
