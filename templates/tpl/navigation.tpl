@@ -1,5 +1,5 @@
 <div class="navbar_container">
-    <div class="navbar__inner">
+    <div class="wrap navbar__inner">
         {foreach $Pages as $page}
             <div class="navbar__inner-page">
                 {* <span class="page-title">{$page->pageDisplayName}</span> *}

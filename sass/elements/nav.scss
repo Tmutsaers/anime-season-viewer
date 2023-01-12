@@ -1,0 +1,16 @@
+.linkBar
+{
+    @apply bg-white;
+    @apply h-20;
+    
+    .navbar_container
+    {
+        .navbar__inner {
+            @apply grid grid-cols-12;
+
+            .navbar__inner-page {
+                @apply col-span-3;
+            }
+        }
+    }
+}
