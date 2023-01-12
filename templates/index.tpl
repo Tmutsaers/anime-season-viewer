@@ -8,7 +8,7 @@
 </head>
 <body>
     <div class="linkBar">
-        
+        {include file="./tpl/navigation.tpl"}
     </div>
     <div class="wrap main-container">
     

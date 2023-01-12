@@ -6,7 +6,7 @@
 
     $animeManager = new AnimeManager();
 
-    $_action = isset($_REQUEST['action']) ? $_REQUEST['action'] : 'currentSeason';
+    $_page = isset($_REQUEST['page']) ? $_REQUEST['page'] : 'currentSeason';
 
     // $animeManager->displayEmptySeasonPicker();
 
@@ -14,21 +14,19 @@
     // echo("==============================================================");
     // var_dump($_SERVER);
 
-    switch($_action)
+    switch($_page)
     {
-
-        case 'submit':
+        case 'seasonpicked':
             $animeManager->displaySeasonPicked($_POST);
             break;
 
-        case 'pickSeason':
+        case 'seasonpicker':
             $animeManager->displayEmptySeasonPicker();
             break;
         
-        case 'currentSeason':
+        case 'currentseason':
             default:
-            //$animeManager->displayCurrentSeason();
-            $animeManager->displayEmptySeasonPicker();
+            $animeManager->displayCurrentSeason();
             break;
     }
     

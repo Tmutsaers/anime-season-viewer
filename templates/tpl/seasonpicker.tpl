@@ -3,10 +3,10 @@
         <h2> Pick a year and season </h2>
     </div>
     <div class="seasonpicker__inner">
-        <form class="seasonpicker__inner-form" id="datepickerForm" action="seasonPicker" method="post">
+        <form class="seasonpicker__inner-form" id="datepickerForm" action="seasonpicked" method="post">
             <label for="yearInput">Year</label>
             <input type="number" id="yearInput" value="{$YEAR_VALUE}" name="year" min="1970" max="2023"><br><br>
-            <input type="hidden" name="action" value="submit"/>
+            <input type="hidden" name="page" value="seasonpicked"/>
         </form>
 
         <label for="seasonInput">Season</label>

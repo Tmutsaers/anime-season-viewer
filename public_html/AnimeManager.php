@@ -1,9 +1,11 @@
 <?php
 
 use Module\HttpClient\Handler;
+use Module\HttpClient\WebPages;
 
 require './smartyContainer.php';
 require './Formhandler.php';
+require './Webpages.php';
 
 class AnimeManager
 {
@@ -17,6 +19,19 @@ class AnimeManager
     function __construct()
     {
         $this->tpl = SmartySingleton::instance();
+        $this->initNav();
+    }
+
+    function initNav()
+    {
+        WebPages::init();
+        $this->tpl->assign('Pages',WebPages::$webpageList);
+    }
+
+    function handleCustomTpl($post = array())
+    {
+        $this->tpl->assign('currentPage', self::$TPL_PATH . $post['TPL']);
+        $this->tpl->display('index.tpl');
     }
 
     function displayCurrentSeason()
