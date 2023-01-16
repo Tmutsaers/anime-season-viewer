@@ -54,6 +54,38 @@ class Handler
         $processed = main::processSeasonJSON(json_decode($answer,true));
         return $processed;
     }
+
+    public static function handlePostGenre($Post): array
+    {
+        $genreID = $Post['genre'];
+
+        $cUrlConnection = curl_init();
+
+        curl_setopt($cUrlConnection, CURLOPT_URL, 'https://api.jikan.moe/v4/anime?genres='. $genreID);
+        curl_setopt($cUrlConnection, CURLOPT_RETURNTRANSFER, true);
+
+        $answer = curl_exec($cUrlConnection);
+        curl_close($cUrlConnection);
+
+        $processed = main::processJSON(json_decode($answer,true));
+        return $processed;
+    }
+
+    public static function handlePostSearch($Post): array
+    {
+        $name = $Post['searchText'];
+
+        $cUrlConnection = curl_init();
+
+        curl_setopt($cUrlConnection, CURLOPT_URL, 'https://api.jikan.moe/v4/anime?sfw=true&q='. $name);
+        curl_setopt($cUrlConnection, CURLOPT_RETURNTRANSFER, true);
+
+        $answer = curl_exec($cUrlConnection);
+        curl_close($cUrlConnection);
+
+        $processed = main::processJSON(json_decode($answer,true));
+        return $processed;
+    }
 }
 
 // Working curl 

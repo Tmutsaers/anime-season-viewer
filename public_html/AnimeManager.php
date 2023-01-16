@@ -6,6 +6,7 @@ use Module\HttpClient\WebPages;
 require './smartyContainer.php';
 require './Formhandler.php';
 require './Webpages.php';
+require './FileReader.php';
 
 class AnimeManager
 {
@@ -15,11 +16,15 @@ class AnimeManager
     public static $TPL_PATH = "./tpl/";
     public static $SEASONPICKER = "seasonpicker.tpl";
     public static $CURRENTSEASON = "main.tpl";
+    public static $GENREPICKER = "genrepicker.tpl";
+    public static $SEARCHPICKER = "searchpicker.tpl";
+    public static $Genres = array();
 
     function __construct()
     {
         $this->tpl = SmartySingleton::instance();
         $this->initNav();
+        self::$Genres = FileReader::ReadGenres();
     }
 
     function initNav()
@@ -31,6 +36,36 @@ class AnimeManager
     function handleCustomTpl($post = array())
     {
         $this->tpl->assign('currentPage', self::$TPL_PATH . $post['TPL']);
+        $this->tpl->display('index.tpl');
+    }
+
+    function displaySearchPicker()
+    {
+        $this->tpl->assign('currentPage', self::$TPL_PATH . self::$SEARCHPICKER);
+        $this->tpl->display('index.tpl');
+    }
+
+    function displaySearchPicked($post = array())
+    {
+        $animes = Handler::handlePostSearch($post);
+        $this->tpl->assign('animes', $animes);
+        $this->tpl->assign('currentPage', self::$TPL_PATH . self::$SEARCHPICKER);
+        $this->tpl->display('index.tpl');
+    }
+
+    function displayGenrePicker()
+    {
+        $this->tpl->assign('currentPage', self::$TPL_PATH . self::$GENREPICKER);
+        $this->tpl->assign('genres', self::$Genres);
+        $this->tpl->display('index.tpl');
+    }
+
+    function displayGenrePicked($post = array())
+    {
+        $animes = Handler::handlePostGenre($post);
+        $this->tpl->assign('animes', $animes);
+        $this->tpl->assign('currentPage', self::$TPL_PATH . self::$GENREPICKER);
+        $this->tpl->assign('genres', self::$Genres);
         $this->tpl->display('index.tpl');
     }
 
