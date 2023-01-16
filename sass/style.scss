@@ -30,6 +30,19 @@ body {
         width: 20px;
         height: 20px;
     }
+
+    .btn {
+        @apply min-w-[150px] py-2.5;
+        @apply text-center inline-block;
+        @apply rounded-full;
+
+        @apply border border-solid border-emerald-800;
+        @apply bg-emerald-800 text-white;
+
+        @apply cursor-pointer;
+
+        @apply hover:bg-emerald-400 hover:border-emerald-400;
+    }
     
     .anime__inner-description::-webkit-scrollbar-track {
     border-radius: 100vh;

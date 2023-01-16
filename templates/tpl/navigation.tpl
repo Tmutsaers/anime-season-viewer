@@ -6,7 +6,7 @@
                 {* <a class="page-title" href={$page->pageUrl}>{$page->pageDisplayName}</a> *}
                 <form action="{$page->pageUrl}" method="post">
                     <input type="hidden" name="page" value="{$page->pageUrl}"/>
-                    <button type="submit">{$page->pageDisplayName}</button>
+                    <button class="btn" type="submit">{$page->pageDisplayName}</button>
                 </form>
             </div>
         {/foreach}

@@ -1,15 +1,18 @@
 .linkBar
 {
-    @apply bg-white;
+    @apply bg-gray-500;
     @apply h-20;
     
     .navbar_container
     {
+        @apply h-full;
         .navbar__inner {
             @apply grid grid-cols-12;
+            @apply h-full;
 
             .navbar__inner-page {
                 @apply col-span-3;
+                @apply m-auto;
             }
         }
     }
