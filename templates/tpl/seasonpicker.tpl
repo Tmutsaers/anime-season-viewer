@@ -26,7 +26,7 @@
 {if isset($animes)}
     <div class="animes_container">
         <div class="animes__inner-title">
-            <h1 class="animes-general-title">Animes airing this season.</h1>
+            <h1 class="animes-general-title">Animes that aired during this season</h1>
         </div>
         <div class="animes_inner">
             {foreach $animes as $value}

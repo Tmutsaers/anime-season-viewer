@@ -13,14 +13,14 @@
             <input type="hidden" name="page" value="genrepicked"/>
         </form>
 
-        <input type="submit" form="genrepickerForm" value="Submit">
+        <input type="submitBTN" form="genrepickerForm" value="Submit">
     </div>
 </div>
 
 {if isset($animes)}
     <div class="animes_container">
         <div class="animes__inner-title">
-            <h1 class="animes-general-title">Animes airing this season.</h1>
+            <h1 class="animes-general-title">Animes returned by query</h1>
         </div>
         <div class="animes_inner">
             {foreach $animes as $value}

@@ -38,6 +38,8 @@ body {
     }
 
     .btn {
+        @apply text-lg font-medium;
+
         @apply min-w-[150px] py-2.5;
         @apply text-center inline-block;
         @apply rounded-full;

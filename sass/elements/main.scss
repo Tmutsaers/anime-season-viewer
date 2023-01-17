@@ -1,8 +1,10 @@
 .animes_container{
     @apply my-10;
 
-    .animes_inner-title {
-
+    .animes__inner-title {
+        .animes-general-title {
+            @apply text-center;
+        }
     }
 
     .animes_inner {
