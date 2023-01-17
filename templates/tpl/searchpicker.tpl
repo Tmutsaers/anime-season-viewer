@@ -5,7 +5,41 @@
     <div class="searchpicker__inner">
         <form class="searchpicker__inner-form" id="searchpickerForm" action="searchpicked" method="post">
             <label for="searchInput">Name:</label>
-            <input type="text" id="searchInput" name="searchText">
+            <input type="text" id="searchInput" name="q">
+            <label for="statusInput">Status</label>
+            <select name="status" id="statusInput">
+                <option value="airing">Airing</option>
+                <option value="complete">Complete</option>
+                <option value="upcoming">Upcoming</option>
+            </select>
+            <label for="genreInput">Genre</label>
+            <select name="genre" id="genreInput">
+                {foreach $genres as $genre}
+                    <option value="{$genre->mal_id}">{$genre->name}</option>
+                {/foreach}
+            </select>
+            <label for="orderbyInput">Order by</label>
+            <select name="orderby" id="orderbyInput">
+                <option value="mal_id">ID</option>
+                <option value="title">Title</option>
+                <option value="type">Type</option>
+                <option value="rating">Rating</option>
+                <option value="start_date">Start date</option>
+                <option value="end_date">End date</option>
+                <option value="episodes">Episode amount</option>
+                <option value="score">Score</option>
+                <option value="scored_by">Scored by</option>
+                <option value="rank">Rank</option>
+                <option value="popularity">Popularity</option>
+                <option value="members">Members</option>
+                <option value="favorites">Favorites</option>
+            </select>
+            <label for="sortInput">Sort</label>
+            <select name="sort" id="sortInput">
+                <option value="desc">Descending</option>
+                <option value="asc">Ascending</option>
+            </select>
+
             <input type="hidden" name="page" value="searchpicked"/>
         </form>
         <input type="submit" form="searchpickerForm" value="Submit">

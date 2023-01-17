@@ -42,6 +42,7 @@ class AnimeManager
     function displaySearchPicker()
     {
         $this->tpl->assign('currentPage', self::$TPL_PATH . self::$SEARCHPICKER);
+        $this->tpl->assign('genres', self::$Genres);
         $this->tpl->display('index.tpl');
     }
 
@@ -50,6 +51,7 @@ class AnimeManager
         $animes = Handler::handlePostSearch($post);
         $this->tpl->assign('animes', $animes);
         $this->tpl->assign('currentPage', self::$TPL_PATH . self::$SEARCHPICKER);
+        $this->tpl->assign('genres', self::$Genres);
         $this->tpl->display('index.tpl');
     }
 

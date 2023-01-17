@@ -10,12 +10,13 @@
     <div class="linkBar">
         {include file="./tpl/navigation.tpl"}
     </div>
-    <div class="wrap main-container">
     
-        {* {include file="./tpl/main.tpl"} *}
-        {* {include file="./tpl/seasonpicker.tpl"} *}
-        {include file="{$currentPage}"}
-        
+    <div class="main-container">
+        <div class="wrap main">
+            {* {include file="./tpl/main.tpl"} *}
+            {* {include file="./tpl/seasonpicker.tpl"} *}
+            {include file="{$currentPage}"}
+        </div>                
     </div>
 
 </body>

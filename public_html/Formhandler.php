@@ -71,13 +71,35 @@ class Handler
         return $processed;
     }
 
+    function createSearchQuery($post = array()) : string
+    {
+        $query = "";
+        foreach($post as $param => $value)
+        {
+            if(strcasecmp($param,"page") == 0)
+            {
+                continue;
+            }
+            if($value == "")
+            {
+                continue;
+            }
+
+            $query .= "&".$param."=".$value;
+        }
+        return $query;
+    }
+
     public static function handlePostSearch($Post): array
     {
-        $name = $Post['searchText'];
+        // $name = $Post['searchText'];
+        $query = self::createSearchQuery($Post);
+        // var_dump($query);
 
         $cUrlConnection = curl_init();
 
-        curl_setopt($cUrlConnection, CURLOPT_URL, 'https://api.jikan.moe/v4/anime?sfw=true&q='. $name);
+        // curl_setopt($cUrlConnection, CURLOPT_URL, 'https://api.jikan.moe/v4/anime?sfw=true&q='. $name);
+        curl_setopt($cUrlConnection, CURLOPT_URL, 'https://api.jikan.moe/v4/anime?sfw=true'.$query);
         curl_setopt($cUrlConnection, CURLOPT_RETURNTRANSFER, true);
 
         $answer = curl_exec($cUrlConnection);

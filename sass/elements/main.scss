@@ -1,5 +1,6 @@
 .animes_container{
     @apply my-10;
+
     .animes_inner-title {
 
     }
@@ -10,7 +11,8 @@
 
         .anime-container {
             @apply col-span-4 relative rounded-lg;
-            @apply bg-gray-500;
+            //@apply bg-gray-500;
+            @apply bg-[#044533];
 
             @apply md:col-span-6;
             @apply mob:col-span-12;

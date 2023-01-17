@@ -1,8 +1,10 @@
 @import './elements/**/*';
 
 body {
-    @apply relative;
-    @apply bg-gray-600;
+    @apply relative m-0;
+    //@apply bg-gray-600;
+    //@apply bg-white;
+    @apply bg-[#066B4F];
 
     .wrap {
         @apply max-w-1176 mx-auto;
@@ -11,6 +13,10 @@ body {
         @apply md:px-9;
         @apply sm:px-6;
         @apply xs:px-mob;
+    }
+
+    .main-container {
+
     }
 
     h1,h2,.anime__inner-description {
