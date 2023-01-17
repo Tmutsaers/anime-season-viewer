@@ -20,7 +20,7 @@ body {
     }
 
     h1,h2,.anime__inner-description {
-        @apply font-fontTitle text-white;
+        @apply font-fontTitle text-[#B4DCCA];
     }
 
 
@@ -43,25 +43,32 @@ body {
         @apply rounded-full;
 
         @apply border border-solid border-emerald-800;
-        @apply bg-emerald-800 text-white;
+        @apply bg-emerald-800 text-[#B4DCCA] font-fontTitle;
 
         @apply cursor-pointer;
 
-        @apply hover:bg-emerald-400 hover:border-emerald-400;
+        /* @apply hover:bg-emerald-400 hover:border-emerald-400; */
+        @apply hover:bg-[#0AAB7D] hover:border-[#0AAB7D];
     }
     
     .anime__inner-description::-webkit-scrollbar-track {
-    border-radius: 100vh;
-    background: #f7f4ed;
+        border-radius: 100vh;
+        background: #065F46;
     }
     
-    .anime__inner-description::-webkit-scrollbar-thumb {
+    /* .anime__inner-description::-webkit-scrollbar-thumb {
     background: #e0cbcb;
     border-radius: 100vh;
     border: 3px solid #f6f7ed;
+    } */
+
+    .anime__inner-description::-webkit-scrollbar-thumb {
+        background: #0AAB7D;
+        border-radius: 100vh;
+        border: 3px solid #0AAB7D;
     }
     
     .anime__inner-description::-webkit-scrollbar-thumb:hover {
-    background: #c0a0b9;
+        background: #0EEBAC
     }
 }
