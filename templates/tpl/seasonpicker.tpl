@@ -1,26 +1,26 @@
 <div class="seasonpicker_container">
     <div class="seasonpicker_title">
-        <h2> Pick a year and season </h2>
+        <h1> Pick a year and season </h1>
     </div>
     <div class="seasonpicker__inner">
         <form class="seasonpicker__inner-form" id="datepickerForm" action="seasonpicked" method="post">
             <label for="yearInput">Year</label>
-            <input type="number" id="yearInput" value="{$YEAR_VALUE}" name="year" min="1970" max="2023"><br><br>
+            <input type="number" id="yearInput" value="{$YEAR_VALUE}" name="year" min="1970" max="2023">
             <input type="hidden" name="page" value="seasonpicked"/>
         </form>
 
-        <label for="seasonInput">Season</label>
-        <select name="season" id="seasonInput" form="datepickerForm">
-            <option value="{$SEASON_VALUE}" selected hidden>{$SEASON_VALUE}</option>
-            <option value="Winter">Winter</option>
-            <option value="Fall">Fall</option>
-            <option value="Spring">Spring</option>
-            <option value="Summer">Summer</option>
-        </select><br><br>
-
-        <input type="submit" form="datepickerForm" value="Submit">
-
-
+        <div class="season__inner-input_div">
+            <label for="seasonInput">Season</label>
+            <select name="season" id="seasonInput" form="datepickerForm">
+                <option value="{$SEASON_VALUE}" selected hidden>{$SEASON_VALUE}</option>
+                <option value="Winter">Winter</option>
+                <option value="Fall">Fall</option>
+                <option value="Spring">Spring</option>
+                <option value="Summer">Summer</option>
+            </select>
+        </div>
+        <div class="flexbreak"></div>
+        <input class="btn" type="submit" form="datepickerForm" value="Submit">
     </div>
 </div>
 {if isset($animes)}

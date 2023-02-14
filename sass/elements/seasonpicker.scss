@@ -1,0 +1,55 @@
+.main-container {
+    .main {
+        .seasonpicker_container {
+            .seasonpicker_title {
+                @apply text-center;
+            }
+
+            .seasonpicker__inner {
+                @apply flex flex-wrap justify-center gap-x-5 gap-y-2.5;
+
+                label {
+                    @apply text-center text-[#B4DCCA] font-fontTitle;
+                }
+
+                .seasonpicker__inner-form {
+                    @apply flex flex-col;
+                    @apply gap-y-2.5;
+
+                    #yearInput {
+                        @apply bg-emerald-800 border-emerald-800;
+                        @apply rounded-full min-w-[150px];
+
+                        @apply text-emerald-400 text-center;
+                    }
+                }
+
+                .season__inner-input_div {
+                    @apply flex flex-col;
+                    @apply gap-y-2.5;
+
+                    #seasonInput {
+                        @apply bg-emerald-800 border-emerald-800;
+                        @apply rounded-full min-w-[150px];
+
+                        @apply text-emerald-400 text-center;
+
+                        option {
+                            @apply bg-emerald-800 border-emerald-800;
+
+                            @apply text-emerald-400;
+
+                            &:hover {
+                                @apply bg-emerald-400;
+                            }
+                        }
+                    }
+                }
+
+                .flexbreak {
+                    @apply basis-full;
+                }
+            }
+        }   
+    }
+}

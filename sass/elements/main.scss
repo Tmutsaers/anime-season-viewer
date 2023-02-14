@@ -42,6 +42,12 @@
                     }
                 }
 
+                .top-no-image {
+                    .anime__inner-image {
+                        @apply pt-5;
+                    }
+                }
+
                 .anime__inner-bottom {
                     @apply h-full;
                     @apply mx-[20px];

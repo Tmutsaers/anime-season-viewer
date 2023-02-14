@@ -10,6 +10,9 @@
     <div class="linkBar">
         {include file="./tpl/navigation.tpl"}
     </div>
+    <div class="mobile-menu">
+        {include file="./tpl/mobile-menu.tpl"}
+    </div>
     
     <div class="main-container">
         <div class="wrap main">

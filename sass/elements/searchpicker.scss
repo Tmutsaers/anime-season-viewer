@@ -1,0 +1,29 @@
+.searchpicker_container {
+    .searchpicker_title{
+        @apply text-center;
+    }
+
+    .searchpicker__inner {
+        @apply flex flex-col items-center gap-y-5;
+        .searchpicker__inner-form {
+            @apply grid grid-rows-2;
+            @apply gap-x-5;
+
+            label {
+                @apply row-start-1;
+                @apply text-center text-[#B4DCCA] font-fontTitle;
+            }
+
+            input {
+                @apply row-start-2;
+            }
+
+            #statusInput,#genreInput,#orderbyInput,#sortInput,#searchInput {
+                @apply bg-emerald-800 border-emerald-800;
+                @apply rounded-full min-w-[150px];
+
+                @apply text-emerald-400 text-center;
+            }
+        }
+    }
+}

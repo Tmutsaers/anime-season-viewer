@@ -1,6 +1,6 @@
 <div class="genrepicker_container">
     <div class="genrepicker_title">
-        <h2>Pick a genre </h2>
+        <h1>Pick a genre </h1>
     </div>
     <div class="genrepicker__inner">
         <form class="genrepicker__inner-form" id="genrepickerForm" action="genrepicked" method="post">
@@ -13,7 +13,7 @@
             <input type="hidden" name="page" value="genrepicked"/>
         </form>
 
-        <input type="submitBTN" form="genrepickerForm" value="Submit">
+        <input class="btn" type="submit" form="genrepickerForm" value="Submit">
     </div>
 </div>
 
@@ -27,7 +27,7 @@
                 <div class="anime-container">
                     <div class="anime__inner">
 
-                        <div class="anime__inner-top">
+                        <div class="anime__inner-top top-no-image">
                             <div class="anime__inner-image">
                                 <img src="{$value->image}">
                                 <a class="block-link" href="{$value->url}"></a>

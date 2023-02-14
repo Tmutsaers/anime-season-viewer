@@ -1,0 +1,25 @@
+.genrepicker_container {
+    .genrepicker_title{
+        @apply text-center;
+    }
+
+    .genrepicker__inner {
+        @apply flex flex-col items-center gap-y-5;
+
+        .genrepicker__inner-form {
+            @apply flex flex-col items-center;
+            @apply gap-y-2.5;
+
+            label {
+                @apply text-center text-[#B4DCCA] font-fontTitle;
+            }
+
+            #genreInput {
+                @apply bg-emerald-800 border-emerald-800;
+                @apply rounded-full min-w-[150px];
+
+                @apply text-emerald-400 text-center;
+            }
+        }
+    }
+}

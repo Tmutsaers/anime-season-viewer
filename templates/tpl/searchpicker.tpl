@@ -1,6 +1,6 @@
 <div class="searchpicker_container">
     <div class="searchpicker_title">
-        <h2>Search for anime by name</h2>
+        <h1>Search for anime by name</h1>
     </div>
     <div class="searchpicker__inner">
         <form class="searchpicker__inner-form" id="searchpickerForm" action="searchpicked" method="post">
@@ -42,7 +42,7 @@
 
             <input type="hidden" name="page" value="searchpicked"/>
         </form>
-        <input class="submitBTN" type="submit" form="searchpickerForm" value="Submit">
+        <input class="btn submitBTN" type="submit" form="searchpickerForm" value="Submit">
     </div>
 </div>
 
@@ -56,7 +56,7 @@
                 <div class="anime-container">
                     <div class="anime__inner">
 
-                        <div class="anime__inner-top">
+                        <div class="anime__inner-top top-no-image">
                             <div class="anime__inner-image">
                                 <img src="{$value->image}">
                                 <a class="block-link" href="{$value->url}"></a>
