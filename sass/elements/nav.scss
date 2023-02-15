@@ -8,9 +8,19 @@
     .navbar_container
     {
         @apply h-full;
+
+        #menu-trigger {
+            @apply fixed top-[30px] left-6 hidden;
+            @apply text-emerald-400;
+
+            @apply md:inline;
+        }
+
         .navbar__inner {
             @apply grid grid-cols-12;
             @apply h-full;
+
+            @apply md:hidden;
 
             .navbar__inner-page {
                 @apply col-span-3;

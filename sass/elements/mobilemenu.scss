@@ -1,10 +1,29 @@
 .mobile-menu {
     @apply w-[300px];
     @apply -left-full fixed top-0 bottom-0 z-[51];
+    @apply transition-all duration-[400ms];
     @apply bg-[#044533];
 
-    .mobile-menu__inner {
-        @apply flex flex-col justify-center gap-5 h-3/4;
-        @apply ml-5;
+    #close-button {
+        @apply absolute top-6 right-6;
+        @apply text-emerald-400;
     }
+
+    .mobile-menu__inner {
+        @apply flex flex-col justify-center items-center gap-5 h-3/4;
+        //@apply ml-5;
+
+        .mobile-menu__inner-page {
+            form {
+                .btn {
+                    @apply min-w-[250px];
+                }
+            }
+        }
+    }
+}
+
+#overlay {
+    @apply fixed top-0 bottom-0 w-full z-10 -left-full;
+    background: rgba(0,0,0,.5);
 }

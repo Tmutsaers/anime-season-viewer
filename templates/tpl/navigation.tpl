@@ -1,4 +1,5 @@
 <div class="navbar_container">
+    <i class="fa-solid fa-bars" id="menu-trigger" onclick='openMobileMenu()'></i>
     <div class="wrap navbar__inner">
         {foreach $Pages as $page}
             <div class="navbar__inner-page">
@@ -12,3 +13,13 @@
         {/foreach}
     </div>
 </div>
+
+<script>
+    function openMobileMenu()
+    {        
+        let menu = document.getElementById("mobile-menu");
+        let overlay = document.getElementById("overlay");
+        menu.style.left = 0 + "%";
+        overlay.style.left = 0 + "%";
+    }
+</script>
