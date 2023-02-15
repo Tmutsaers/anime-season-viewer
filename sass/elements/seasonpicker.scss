@@ -3,6 +3,7 @@
         .seasonpicker_container {
             .seasonpicker_title {
                 @apply text-center;
+                @apply pt-2;
             }
 
             .seasonpicker__inner {

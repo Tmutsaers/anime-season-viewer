@@ -2,6 +2,8 @@
     @apply my-10;
 
     .animes__inner-title {
+        @apply pt-2;
+        
         .animes-general-title {
             @apply text-center;
         }
@@ -10,6 +12,8 @@
     .animes_inner {
         @apply grid grid-cols-12 gap-9;
         @apply pt-5;
+
+        @apply mob:gap-x-0 mob:gap-y-4;
 
         .anime-container {
             @apply col-span-4 relative rounded-lg;
