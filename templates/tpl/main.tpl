@@ -8,11 +8,10 @@
         {foreach $animes as $value}
             <div class="anime-container">
                 <div class="anime__inner">
-                    <i class="fa-solid fa-ellipsis-vertical" id="open-detail"></i>
-                    <form action="animedetail" method="post">
+                    <i class="fa-solid fa-ellipsis-vertical" id="open-detail" onclick=formPost()></i>
+                    <form action="animedetail" id="submitForm" method="post">
                         <input type="hidden" name="page" value="animedetail"/>
                         <input type="hidden" name="animeID" value="{$value->ID}"/>
-                        <input type="submit" id="detaillinkbutton" value="Submit"/>
                     </form>
                     <div class="anime__inner-top">
                         <div class="anime__inner-day">
@@ -38,3 +37,10 @@
         {/foreach}
     </div>
 </div>
+<script>
+    function formPost() 
+    {
+        let form = document.getElementById("submitForm");
+        form.submit();
+    }
+</script>
