@@ -18,6 +18,7 @@ class AnimeManager
     public static $CURRENTSEASON = "main.tpl";
     public static $GENREPICKER = "genrepicker.tpl";
     public static $SEARCHPICKER = "searchpicker.tpl";
+    public static $ANIMEDETAIL = "detailpage.tpl";
     public static $Genres = array();
 
     function __construct()
@@ -31,6 +32,14 @@ class AnimeManager
     {
         WebPages::init();
         $this->tpl->assign('Pages',WebPages::$webpageList);
+    }
+
+    function displayDetailPage($post = array())
+    {
+        $animeDetail = Handler::handleGetFullAnime($post);
+        $this->tpl->assign('animeDetail',$animeDetail);
+        $this->tpl->assign('currentPage', self::$TPL_PATH . self::$ANIMEDETAIL);
+        $this->tpl->display('index.tpl');
     }
 
     function handleCustomTpl($post = array())

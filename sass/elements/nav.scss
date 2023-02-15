@@ -11,7 +11,7 @@
 
         #menu-trigger {
             @apply fixed top-[30px] left-6 hidden;
-            @apply text-emerald-400;
+            @apply text-emerald-400 text-xl;
 
             @apply md:inline;
         }

@@ -3,7 +3,7 @@
 
     .animes__inner-title {
         @apply pt-2;
-        
+
         .animes-general-title {
             @apply text-center;
         }
@@ -14,6 +14,19 @@
         @apply pt-5;
 
         @apply mob:gap-x-0 mob:gap-y-4;
+
+        #open-detail {
+            @apply absolute top-2 right-4;
+            @apply text-emerald-400 text-xl;
+        }
+
+        form {
+            @apply absolute top-2 right-2 invisible;
+            
+            #detaillinkbutton {
+                @apply w-[20px] h-[30px];
+            }
+        }
 
         .anime-container {
             @apply col-span-4 relative rounded-lg;

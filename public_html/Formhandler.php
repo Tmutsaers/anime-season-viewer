@@ -108,6 +108,22 @@ class Handler
         $processed = main::processJSON(json_decode($answer,true));
         return $processed;
     }
+
+    public static function handleGetFullAnime($Post)
+    {
+        $animeID = $Post['animeID'];
+
+        $cUrlConnection = curl_init();
+
+        curl_setopt($cUrlConnection, CURLOPT_URL, 'https://api.jikan.moe/v4/anime/' . $animeID . '/full');
+        curl_setopt($cUrlConnection, CURLOPT_RETURNTRANSFER, true);
+
+        $answer = curl_exec($cUrlConnection);
+        curl_close($cUrlConnection);
+
+        $processed = main::processAnimeDetailJSON(json_decode($answer,true));
+        return $processed;
+    }
 }
 
 // Working curl 

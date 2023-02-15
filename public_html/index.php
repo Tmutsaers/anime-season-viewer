@@ -18,6 +18,10 @@
 
     switch($_page)
     {
+        case 'animedetail':
+            $animeManager->displayDetailPage($_POST);
+            break;
+
         case 'seasonpicked':
             $animeManager->displaySeasonPicked($_POST);
             break;
@@ -44,7 +48,7 @@
         
         case 'currentseason':
             default:
-            $animeManager->displayCurrentSeason();
+            $animeManager->displayCurrentSeason($_POST);
             break;
     }
     

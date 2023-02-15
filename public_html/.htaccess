@@ -18,6 +18,7 @@ RewriteRule ^genrepicker$ /home [L]
 RewriteRule ^genrepicked$ /home [L]
 RewriteRule ^searchpicker$ /home [L]
 RewriteRule ^searchpicked$ /home [L]
+RewriteRule ^animedetail$ /home [L]
 
 # RewriteCond %{REQUEST_URI} ^/seasonPicker$ [NC]
 # RewriteRule ^season

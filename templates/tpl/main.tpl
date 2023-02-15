@@ -1,5 +1,5 @@
 {run_function cClass="Module\HttpClient\Main" pFunction="getCurrentSeason" aParameters=[] aVariable="animes" bStatic=false}
-
+{debug}
 <div class="animes_container">
     <div class="animes__inner-title">
         <h1 class="animes-general-title">Animes airing this season</h1>
@@ -8,7 +8,12 @@
         {foreach $animes as $value}
             <div class="anime-container">
                 <div class="anime__inner">
-
+                    <i class="fa-solid fa-ellipsis-vertical" id="open-detail"></i>
+                    <form action="animedetail" method="post">
+                        <input type="hidden" name="page" value="animedetail"/>
+                        <input type="hidden" name="animeID" value="{$value->ID}"/>
+                        <input type="submit" id="detaillinkbutton" value="Submit"/>
+                    </form>
                     <div class="anime__inner-top">
                         <div class="anime__inner-day">
                             <h2>{$value->day}</h2>

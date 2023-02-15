@@ -4,6 +4,7 @@ namespace Module\HttpClient;
 
 
 use Module\HttpClient\Anime;
+use Module\HttpClient\AnimeDetail;
 use Module\HttpClient\Weekdays;
 
 class Main 
@@ -86,6 +87,7 @@ class Main
             $anime->description = is_null($anime_value['synopsis']) ? "No description given by MAL." : $anime_value['synopsis'];
             $anime->day = $anime_value['broadcast']['day'];
             $anime->url = $anime_value['url'];
+            $anime->ID = $anime_value['mal_id'];
             $animeSeason[] = $anime;
         }
 
@@ -122,9 +124,23 @@ class Main
             $anime->image = $anime_value['images']['jpg']['image_url'];
             $anime->description = is_null($anime_value['synopsis']) ? "No description given by MAL." : $anime_value['synopsis'];
             $anime->url = $anime_value['url'];
+            // $anime->ID = $anime_value['mal_id'];
             $animeList[] = $anime;
         }
         return $animeList;
+    }
+
+    public static function processAnimeDetailJSON($animeDetail) 
+    {
+        $anime_value = $animeDetail['data'];
+        $anime = new AnimeDetail();
+        $anime->ENname = is_null($anime_value['title_english']) ? $anime_value['title'] : $anime_value['title_english'];
+        $anime->JPname = is_null($anime_value['title_japanese']) ? $anime_value['title'] : $anime_value['title_japanese'];
+        $anime->thumbnail = $anime_value['images']['jpg']['image_url'];
+        $anime->description = is_null($anime_value['synopsis']) ? "No description given by MAL" : $anime_value['synopsis'];
+        $anime->url = $anime_value['url'];
+        $anime->day = is_null($anime_value['broadcast']) ? "No day given" : $anime_value['broadcast']['day'];
+        return $anime;
     }
 }
 

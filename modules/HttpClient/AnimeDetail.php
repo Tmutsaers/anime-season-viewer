@@ -2,12 +2,12 @@
 
 namespace Module\HttpClient;
 
-class Anime 
+class AnimeDetail 
 {
-    public $name;
+    public $ENname;
+    public $JPname;
     public $day;
     public $description;
-    public $image;
+    public $thumbnail;
     public $url;
-    public $ID;
 }
