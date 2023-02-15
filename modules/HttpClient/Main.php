@@ -89,6 +89,11 @@ class Main
             $animeSeason[] = $anime;
         }
 
+        if(is_null($animeSeason[0]->day) === true)
+        {
+            return $animeSeason;
+        }
+
         uasort($animeSeason, function($a, $b) 
         {
             $Weekdays = new Weekdays; 
