@@ -32,7 +32,11 @@
             {foreach $animes as $value}
                 <div class="anime-container">
                     <div class="anime__inner">
-
+                        <i class="fa-solid fa-ellipsis-vertical" id="open-detail" onclick=formPost({$value->ID})></i>
+                        <form action="animedetail" id="submitForm" method="post">
+                            <input type="hidden" name="page" value="animedetail"/>
+                            <input type="hidden" name="animeID" id="anime_ID-value" value="{$value->ID}"/>
+                        </form>
                         <div class="anime__inner-top">
                             <div class="anime__inner-day">
                                 <h2>{$value->day}</h2>
@@ -58,3 +62,12 @@
         </div>
     </div>    
 {/if}
+<script>
+    function formPost(ID) 
+    {
+        let form = document.getElementById("submitForm");
+        let IDinput = document.getElementById("anime_ID-value");
+        IDinput.value = ID;
+        form.submit();
+    }
+</script>

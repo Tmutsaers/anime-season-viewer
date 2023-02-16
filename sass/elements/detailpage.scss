@@ -1,6 +1,7 @@
 .anime-detail_container {
     .anime-detail_title {
         @apply flex flex-col;
+        @apply mb-[10px] mt-[90px] pl-5 bg-[#044533] rounded-lg;
 
         h1 {
             @apply mb-0;
@@ -13,20 +14,23 @@
     .anime-detail__inner {
         @apply grid grid-cols-12;
         @apply gap-x-5;
+        @apply bg-[#044533] rounded-lg p-5;
 
         .anime-detail__inner-lefttab {
-            @apply col-span-4;
+            @apply col-span-3;
+            @apply flex flex-col gap-y-5;
 
             .anime-detail__inner-thumbnail {
 
             }
             .anime-detail__inner-info {
                 @apply text-[#B4DCCA] font-fontTitle;
+                @apply max-h-[300px] overflow-y-scroll;
             }
         }
 
         .anime-detail__inner-righttab {
-            @apply col-span-8;
+            @apply col-span-9;
 
             .anime-detail__inner-description {
                 @apply mb-12;
@@ -37,9 +41,15 @@
 
                 .anime-detail__inner-character {
                     @apply col-span-2;
+                    @apply text-[#B4DCCA] font-fontTitle;
+                    @apply flex flex-col items-center;
                     img {
                         //@apply max-w-[100px];
                         @apply w-[100px];
+                    }
+
+                    h3 {
+                        @apply text-center;
                     }
                 }
 

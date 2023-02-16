@@ -143,8 +143,8 @@ class Main
         $anime->ID = $anime_value['mal_id'];
         
         $anime->episodeAmount = $anime_value['episodes'];
-        $anime->startDate = $anime_value['aired']['from'];
-        $anime->endDate = is_null($anime_value['aired']['to']) ? "Still airing/ongoing" : $anime_value['aired']['to'];
+        $anime->startDate = explode('T',$anime_value['aired']['from'])[0];
+        $anime->endDate = is_null($anime_value['aired']['to']) ? "Still airing/ongoing" : explode('T',$anime_value['aired']['to'])[0];
 
         $anime->score = $anime_value['score'];
         $anime->rank = $anime_value['rank'];

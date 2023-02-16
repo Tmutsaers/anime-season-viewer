@@ -23,7 +23,6 @@ body {
         @apply font-fontTitle text-[#B4DCCA];
     }
 
-
     .block-link {
         @apply absolute inset-0;
     }
@@ -52,17 +51,17 @@ body {
         /* @apply hover:bg-emerald-400 hover:border-emerald-400; */
         @apply hover:bg-[#0AAB7D] hover:border-[#0AAB7D];
     }
+
+        /* .anime__inner-description::-webkit-scrollbar-thumb {
+    background: #e0cbcb;
+    border-radius: 100vh;
+    border: 3px solid #f6f7ed;
+    } */
     
     .anime__inner-description::-webkit-scrollbar-track {
         border-radius: 100vh;
         background: #065F46;
     }
-    
-    /* .anime__inner-description::-webkit-scrollbar-thumb {
-    background: #e0cbcb;
-    border-radius: 100vh;
-    border: 3px solid #f6f7ed;
-    } */
 
     .anime__inner-description::-webkit-scrollbar-thumb {
         background: #0AAB7D;
@@ -71,6 +70,26 @@ body {
     }
     
     .anime__inner-description::-webkit-scrollbar-thumb:hover {
+        background: #0EEBAC
+    }
+
+    .anime-detail__inner-info::-webkit-scrollbar {
+        width: 20px;
+        height: 20px;
+    }
+
+    .anime-detail__inner-info::-webkit-scrollbar-track {
+        border-radius: 100vh;
+        background: #065F46;
+    }
+
+    .anime-detail__inner-info::-webkit-scrollbar-thumb {
+        background: #0AAB7D;
+        border-radius: 100vh;
+        border: 3px solid #0AAB7D;
+    }
+    
+    .anime-detail__inner-info::-webkit-scrollbar-thumb:hover {
         background: #0EEBAC
     }
 }
