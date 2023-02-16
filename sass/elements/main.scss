@@ -17,7 +17,7 @@
 
         #open-detail {
             @apply absolute top-2 right-4;
-            @apply text-emerald-400 text-xl;
+            @apply text-emerald-400 text-xl cursor-pointer;
         }
 
         form {

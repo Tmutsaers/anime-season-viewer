@@ -140,7 +140,77 @@ class Main
         $anime->description = is_null($anime_value['synopsis']) ? "No description given by MAL" : $anime_value['synopsis'];
         $anime->url = $anime_value['url'];
         $anime->day = is_null($anime_value['broadcast']) ? "No day given" : $anime_value['broadcast']['day'];
+        $anime->ID = $anime_value['mal_id'];
+        
+        $anime->episodeAmount = $anime_value['episodes'];
+        $anime->startDate = $anime_value['aired']['from'];
+        $anime->endDate = is_null($anime_value['aired']['to']) ? "Still airing/ongoing" : $anime_value['aired']['to'];
+
+        $anime->score = $anime_value['score'];
+        $anime->rank = $anime_value['rank'];
+        $anime->popularity = $anime_value['popularity'];
+        $anime->favorites = $anime_value['favorites'];
+
+        $anime->season = $anime_value['season'];
+        $anime->year = $anime_value['year'];
+
+        $producers = array();
+        foreach($anime_value['producers'] as $producer)
+        {
+            $producers[] = $producer['name'];
+        }
+        $anime->producers = $producers;
+        
+        $studios = array();
+        foreach($anime_value['studios'] as $studio)
+        {
+            $studios[] = $studio['name'];
+        }
+        $anime->studios = $studios;
+
+        $genres = array();
+        foreach($anime_value['genres'] as $genre)
+        {
+            $genres[] = $genre['name'];
+        }
+        $anime->genres = $genres;
+
+        $themes = array();
+        foreach($anime_value['themes'] as $theme)
+        {
+            $themes[] = $theme['name'];
+        }
+        $anime->themes = $themes;
+
+        $demographics = array();
+        foreach($anime_value['demographics'] as $demographic)
+        {
+            $demographics[] = $demographic['name'];
+        }
+        $anime->demographics = $demographics;
+
+        $streamingSites = array();
+        foreach($anime_value['streaming'] as $streamingSite)
+        {
+            $streamingSites[] = $streamingSite['name'];
+        }
+        $anime->streamedOn = $streamingSites;
+
         return $anime;
+    }
+
+    public static function processCharactersJSON($animeCharacters): array
+    {
+        $characterList = array();
+
+        foreach($animeCharacters['data'] as $character => $character_value)
+        {
+            $character = new Character();
+            $character->name = $character_value['character']['name'];
+            $character->image = $character_value['character']['images']['jpg']['image_url'];
+            $characterList[] = $character;
+        }
+        return $characterList;
     }
 }
 

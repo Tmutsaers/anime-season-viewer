@@ -113,16 +113,27 @@ class Handler
     {
         $animeID = $Post['animeID'];
 
+        $answer = self::makeWebRequest('https://api.jikan.moe/v4/anime/' . $animeID . '/full');
+
+        $processed = main::processAnimeDetailJSON(json_decode($answer,true));
+
+        $character_answer = self::makeWebRequest('https://api.jikan.moe/v4/anime/'. $animeID . '/characters');
+
+        $processed->Characters = main::processCharactersJSON(json_decode($character_answer,true));
+        return $processed;
+    }
+
+    public static function makeWebRequest($requestURL)
+    {
         $cUrlConnection = curl_init();
 
-        curl_setopt($cUrlConnection, CURLOPT_URL, 'https://api.jikan.moe/v4/anime/' . $animeID . '/full');
+        curl_setopt($cUrlConnection, CURLOPT_URL, $requestURL);
         curl_setopt($cUrlConnection, CURLOPT_RETURNTRANSFER, true);
 
         $answer = curl_exec($cUrlConnection);
         curl_close($cUrlConnection);
 
-        $processed = main::processAnimeDetailJSON(json_decode($answer,true));
-        return $processed;
+        return $answer;
     }
 }
 
