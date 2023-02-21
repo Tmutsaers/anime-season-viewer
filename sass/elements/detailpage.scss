@@ -34,7 +34,7 @@
 
             .anime-detail__inner-description {
                 @apply mb-12;
-                @apply text-xl text-[#B4DCCA] font-fontTitle
+                @apply text-xl text-[#B4DCCA] font-fontTitle;
             }
             .anime-detail__inner-characters {
                 @apply grid grid-cols-12;

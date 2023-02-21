@@ -7,6 +7,7 @@ require './smartyContainer.php';
 require './Formhandler.php';
 require './Webpages.php';
 require './FileReader.php';
+require './DatabaseInterface.php';
 
 class AnimeManager
 {
@@ -21,11 +22,21 @@ class AnimeManager
     public static $ANIMEDETAIL = "detailpage.tpl";
     public static $Genres = array();
 
+    public $dbConnection;
+
     function __construct()
     {
         $this->tpl = SmartySingleton::instance();
         $this->initNav();
         self::$Genres = FileReader::ReadGenres();
+        $this->initDB();
+    }
+
+    function initDB()
+    {
+        $this->dbConnection = new DatabaseInterface();
+        // $this->dbConnection->FillAnimeList()
+        //$database->getAllAnime();
     }
 
     function initNav()
@@ -89,6 +100,7 @@ class AnimeManager
     function displaySeasonPicked($post = array())
     {
         $animes = Handler::handlePost($post);
+        $this->dbConnection->FillAnimeList($animes);
         $this->tpl->assign('animes', $animes);
         $this->tpl->assign('currentPage', self::$TPL_PATH . self::$SEASONPICKER );
         $this->tpl->assign('YEAR_VALUE',$post['year']);
