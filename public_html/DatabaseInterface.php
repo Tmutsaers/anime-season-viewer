@@ -28,7 +28,7 @@ class DatabaseInterface
 
     function FillAnimeList($Anime)
     {
-        mysqli_report(MYSQLI_REPORT_ERROR);
+        // mysqli_report(MYSQLI_REPORT_ERROR);
         foreach($Anime as $anime_value)
         {
             $query = sprintf("INSERT INTO `Anime` (Name,Day,Description,Image,Url,MalID)
@@ -38,12 +38,7 @@ class DatabaseInterface
             mysqli_real_escape_string($this->connection,$anime_value->image),
             mysqli_real_escape_string($this->connection,$anime_value->url),
             $anime_value->ID);
-
-            var_dump($query);
-
             $result = mysqli_query($this->connection,$query);
-
-            var_dump($result);
         }
     }
 

@@ -123,6 +123,12 @@ class Handler
         return $processed;
     }
 
+    public static function handleCurrentSeason()
+    {
+        $answer = main::getCurrentSeasonStatic();
+        return $answer;
+    }
+
     public static function makeWebRequest($requestURL)
     {
         $cUrlConnection = curl_init();

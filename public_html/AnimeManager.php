@@ -69,6 +69,8 @@ class AnimeManager
     function displaySearchPicked($post = array())
     {
         $animes = Handler::handlePostSearch($post);
+        $this->dbConnection->FillAnimeList($animes);
+
         $this->tpl->assign('animes', $animes);
         $this->tpl->assign('currentPage', self::$TPL_PATH . self::$SEARCHPICKER);
         $this->tpl->assign('genres', self::$Genres);
@@ -85,6 +87,8 @@ class AnimeManager
     function displayGenrePicked($post = array())
     {
         $animes = Handler::handlePostGenre($post);
+        $this->dbConnection->FillAnimeList($animes);
+
         $this->tpl->assign('animes', $animes);
         $this->tpl->assign('currentPage', self::$TPL_PATH . self::$GENREPICKER);
         $this->tpl->assign('genres', self::$Genres);
@@ -93,6 +97,10 @@ class AnimeManager
 
     function displayCurrentSeason()
     {
+        $animes = Handler::handleCurrentSeason();
+        $this->dbConnection->FillAnimeList($animes);
+
+        $this->tpl->assign('animes', $animes);
         $this->tpl->assign('currentPage', self::$TPL_PATH . self::$CURRENTSEASON);
         $this->tpl->display('index.tpl');
     }
@@ -101,6 +109,7 @@ class AnimeManager
     {
         $animes = Handler::handlePost($post);
         $this->dbConnection->FillAnimeList($animes);
+
         $this->tpl->assign('animes', $animes);
         $this->tpl->assign('currentPage', self::$TPL_PATH . self::$SEASONPICKER );
         $this->tpl->assign('YEAR_VALUE',$post['year']);

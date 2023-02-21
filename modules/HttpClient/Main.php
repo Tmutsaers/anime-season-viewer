@@ -58,6 +58,11 @@ class Main
         return $animeSeason;
     }
 
+    public static function getCurrentSeasonStatic(): array
+    {
+        return self::getCurrentSeason();
+    }
+
     public function getCurrentSeason(): array
     {
         $client = new \GuzzleHttp\Client();

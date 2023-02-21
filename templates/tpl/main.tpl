@@ -1,4 +1,4 @@
-{run_function cClass="Module\HttpClient\Main" pFunction="getCurrentSeason" aParameters=[] aVariable="animes" bStatic=false}
+{* {run_function cClass="Module\HttpClient\Main" pFunction="getCurrentSeason" aParameters=[] aVariable="animes" bStatic=false} *}
 <div class="animes_container">
     <div class="animes__inner-title">
         <h1 class="animes-general-title">Animes airing this season</h1>
