@@ -4,6 +4,9 @@ namespace Module\HttpClient;
 
 require '..\modules\HttpClient\Webpage.php';
 
+/**
+ * WebPages All the internal webpages are listed here
+ */
 class WebPages 
 {
     static public $webpageList = array();

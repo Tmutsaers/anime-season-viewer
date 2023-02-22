@@ -7,33 +7,23 @@ use Module\HttpClient\Anime;
 use Module\HttpClient\AnimeDetail;
 use Module\HttpClient\Weekdays;
 
+/**
+ * Main Handles the Curl/REST requests to the JIKAN MOE API
+ */
 class Main 
 {
     public static function onlyCreateClient()
     {
         $client = new \GuzzleHttp\Client();
     }
-
-
-    public static function getString(): string 
-    {
-        return "The Function Works!";
-    }
-
-    public function getTest2($year): array
-    {
-        $test = array();
-        $test[] = $year;
-        return $test;
-    }
-
-    public static function getTest(): array
-    {
-        $test = array();
-        $test = self::getSeason(2020,"winter");
-        return $test;
-    }
-
+    
+    /**
+     * getSeasonStatic Unused
+     *
+     * @param  mixed $year
+     * @param  mixed $season
+     * @return array
+     */
     public static function getSeasonStatic($year,$season): array
     {        
         $client = new \GuzzleHttp\Client();
@@ -45,7 +35,14 @@ class Main
 
         return $animeSeason;
     }
-
+    
+    /**
+     * getSeason Unused
+     *
+     * @param  mixed $year
+     * @param  mixed $season
+     * @return array
+     */
     public function getSeason($year,$season): array
     {        
         $client = new \GuzzleHttp\Client();
@@ -57,13 +54,13 @@ class Main
 
         return $animeSeason;
     }
-
-    public static function getCurrentSeasonStatic(): array
-    {
-        return self::getCurrentSeason();
-    }
-
-    public function getCurrentSeason(): array
+    
+    /**
+     * getCurrentSeason Handles the currentSeason REST API request
+     *
+     * @return array
+     */
+    public static function getCurrentSeason(): array
     {
         $client = new \GuzzleHttp\Client();
         // $response = $client->request('GET', 'https://api.jikan.moe/v4/schedules?sfw=true');
@@ -78,7 +75,14 @@ class Main
 
         return $data['data'];
     }
-
+    
+    /**
+     * processSeasonJSON Maps the Values from the REST json result to an Anime object array
+     * Applies to: Seasonpicker and Currentseason
+     *
+     * @param  mixed $jsonArray
+     * @return array
+     */
     public static function processSeasonJSON($jsonArray): array 
     {
         $animeSeason = array();
@@ -92,6 +96,8 @@ class Main
             $anime->description = is_null($anime_value['synopsis']) ? "No description given by MAL." : $anime_value['synopsis'];
             $anime->day = $anime_value['broadcast']['day'];
             $anime->url = $anime_value['url'];
+            $anime->year = $anime_value['year'];
+            $anime->season = $anime_value['season'];
             $anime->ID = $anime_value['mal_id'];
             $animeSeason[] = $anime;
         }
@@ -115,7 +121,14 @@ class Main
 
         return $animeSeason;
     }
-
+    
+    /**
+     * processJSON Maps the Values from the REST json result to an Anime object array
+     * Applies to: Genrepicker and Searchpicker
+     *
+     * @param  mixed $jsonArray
+     * @return array
+     */
     public static function processJSON($jsonArray) : array
     {
         $animeList = array();
@@ -134,7 +147,14 @@ class Main
         }
         return $animeList;
     }
-
+    
+    /**
+     * processAnimeDetailJSON Maps the Values from the REST json result to an AnimeDetail object
+     * Applies to: AnimeDetail
+     *
+     * @param  mixed $animeDetail
+     * @return void
+     */
     public static function processAnimeDetailJSON($animeDetail) 
     {
         $anime_value = $animeDetail['data'];
@@ -203,7 +223,14 @@ class Main
 
         return $anime;
     }
-
+    
+    /**
+     * processCharactersJSON Maps the Values from the REST json result to an Character object array
+     * Part of Animedetail 
+     *
+     * @param  mixed $animeCharacters
+     * @return array
+     */
     public static function processCharactersJSON($animeCharacters): array
     {
         $characterList = array();

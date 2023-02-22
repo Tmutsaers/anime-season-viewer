@@ -9,5 +9,7 @@ class Anime
     public $description;
     public $image;
     public $url;
+    public $year;
+    public $season;
     public $ID;
 }

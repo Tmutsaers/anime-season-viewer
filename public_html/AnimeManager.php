@@ -22,93 +22,131 @@ class AnimeManager
     public static $ANIMEDETAIL = "detailpage.tpl";
     public static $Genres = array();
 
-    public $dbConnection;
-
     function __construct()
     {
         $this->tpl = SmartySingleton::instance();
         $this->initNav();
         self::$Genres = FileReader::ReadGenres();
-        $this->initDB();
+        Handler::initDBConnection();
     }
-
-    function initDB()
-    {
-        $this->dbConnection = new DatabaseInterface();
-        // $this->dbConnection->FillAnimeList()
-        //$database->getAllAnime();
-    }
-
+    
+    /**
+     * initNav Initializes the navigation
+     *
+     * @return void
+     */
     function initNav()
     {
         WebPages::init();
         $this->tpl->assign('Pages',WebPages::$webpageList);
     }
-
+    
+    /**
+     * displayDetailPage Display the anime detail page
+     *
+     * @param  mixed $post
+     * @return void
+     */
     function displayDetailPage($post = array())
     {
         $animeDetail = Handler::handleGetFullAnime($post);
+        
         $this->tpl->assign('animeDetail',$animeDetail);
         $this->tpl->assign('currentPage', self::$TPL_PATH . self::$ANIMEDETAIL);
         $this->tpl->display('index.tpl');
     }
-
+    
+    /**
+     * handleCustomTpl Unused function
+     *
+     * @param  mixed $post
+     * @return void
+     */
     function handleCustomTpl($post = array())
     {
         $this->tpl->assign('currentPage', self::$TPL_PATH . $post['TPL']);
         $this->tpl->display('index.tpl');
     }
-
+    
+    /**
+     * displaySearchPicker Display empty search picker (Search has yet to been done)
+     *
+     * @return void
+     */
     function displaySearchPicker()
     {
         $this->tpl->assign('currentPage', self::$TPL_PATH . self::$SEARCHPICKER);
         $this->tpl->assign('genres', self::$Genres);
         $this->tpl->display('index.tpl');
     }
-
+    
+    /**
+     * displaySearchPicked Display filled search picker (Search has been done)
+     *
+     * @param  mixed $post
+     * @return void
+     */
     function displaySearchPicked($post = array())
     {
         $animes = Handler::handlePostSearch($post);
-        $this->dbConnection->FillAnimeList($animes);
 
         $this->tpl->assign('animes', $animes);
         $this->tpl->assign('currentPage', self::$TPL_PATH . self::$SEARCHPICKER);
         $this->tpl->assign('genres', self::$Genres);
         $this->tpl->display('index.tpl');
     }
-
+    
+    /**
+     * displayGenrePicker Display empty genre picker (genre yet to be picked)
+     *
+     * @return void
+     */
     function displayGenrePicker()
     {
         $this->tpl->assign('currentPage', self::$TPL_PATH . self::$GENREPICKER);
         $this->tpl->assign('genres', self::$Genres);
         $this->tpl->display('index.tpl');
     }
-
+    
+    /**
+     * displayGenrePicked Display filled genre picker (genre has been picked)
+     *
+     * @param  mixed $post
+     * @return void
+     */
     function displayGenrePicked($post = array())
     {
         $animes = Handler::handlePostGenre($post);
-        $this->dbConnection->FillAnimeList($animes);
 
         $this->tpl->assign('animes', $animes);
         $this->tpl->assign('currentPage', self::$TPL_PATH . self::$GENREPICKER);
         $this->tpl->assign('genres', self::$Genres);
         $this->tpl->display('index.tpl');
     }
-
+    
+    /**
+     * displayCurrentSeason Displays the current season of Anime
+     *
+     * @return void
+     */
     function displayCurrentSeason()
     {
         $animes = Handler::handleCurrentSeason();
-        $this->dbConnection->FillAnimeList($animes);
 
         $this->tpl->assign('animes', $animes);
         $this->tpl->assign('currentPage', self::$TPL_PATH . self::$CURRENTSEASON);
         $this->tpl->display('index.tpl');
     }
-
+    
+    /**
+     * displaySeasonPicked Displays a filled season picker (Season has been picked)
+     *
+     * @param  mixed $post
+     * @return void
+     */
     function displaySeasonPicked($post = array())
     {
         $animes = Handler::handlePost($post);
-        $this->dbConnection->FillAnimeList($animes);
 
         $this->tpl->assign('animes', $animes);
         $this->tpl->assign('currentPage', self::$TPL_PATH . self::$SEASONPICKER );
@@ -116,7 +154,12 @@ class AnimeManager
         $this->tpl->assign('SEASON_VALUE',$post['season']);
         $this->tpl->display('index.tpl');
     }
-
+    
+    /**
+     * displayEmptySeasonPicker Displays an empty season picker (Season has not yet been picked)
+     *
+     * @return void
+     */
     function displayEmptySeasonPicker()
     {
         $this->tpl->assign('currentPage', self::$TPL_PATH . self::$SEASONPICKER );

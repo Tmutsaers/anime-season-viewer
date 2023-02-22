@@ -6,7 +6,12 @@ class FileReader
 {
     public static $FILES_PATH = ".\\files";
     public static $ANIME_GENRES_FILE = "\\animeGenres.json";
-
+    
+    /**
+     * ReadGenres Performs file IO to read the animeGenres.json file
+     *
+     * @return array
+     */
     public static function ReadGenres() : array
     {
         if(file_exists(self::$FILES_PATH.self::$ANIME_GENRES_FILE))
@@ -17,7 +22,13 @@ class FileReader
         }
         return $genres;
     }
-
+    
+    /**
+     * processGenresJSON processes the read values from the animeGenres.json file
+     *
+     * @param  mixed $jsonArray
+     * @return array
+     */
     public static function processGenresJSON($jsonArray) : array
     {
         $animeGenres = array();
