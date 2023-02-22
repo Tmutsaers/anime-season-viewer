@@ -94,7 +94,7 @@ class Main
             $anime->name = is_null($anime_value['title_english']) ? $anime_value['title'] : $anime_value['title_english'];
             $anime->image = $anime_value['images']['jpg']['image_url'];
             $anime->description = is_null($anime_value['synopsis']) ? "No description given by MAL." : $anime_value['synopsis'];
-            $anime->day = $anime_value['broadcast']['day'];
+            $anime->day = is_null($anime_value['broadcast']['day']) ? "No day given" : $anime_value['broadcast']['day'];
             $anime->url = $anime_value['url'];
             $anime->year = $anime_value['year'];
             $anime->season = $anime_value['season'];

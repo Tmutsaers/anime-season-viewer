@@ -43,6 +43,54 @@ class DatabaseInterface
     }
     
     /**
+     * FillAnimeDetail Writes anime_detail data into the database
+     *
+     * @param  mixed $anime_detail
+     * @return void
+     */
+    function FillAnimeDetail($anime_detail)
+    {
+        $query = sprintf("INSERT INTO `Anime_Detail` (id,ENname,JPname,day,description,thumbnail,url,additionalInfo
+        VALUES ('%d','%s','%s','%s','%s','%s','%s','%s')",
+        $anime_detail->ID, 
+        mysqli_real_escape_string($this->connection,$anime_detail->ENname),
+        mysqli_real_escape_string($this->connection,$anime_detail->JPname),
+        $anime_detail->day,
+        mysqli_real_escape_string($this->connection,$anime_detail->description),
+        mysqli_real_escape_string($this->connection,$anime_detail->thumbnail),
+        mysqli_real_escape_string($this->connection,$anime_detail->url),
+        //TODO: implement addtionalInfo field (JSON string of all the extra fields like episodeAmount,producers etc.)
+        "test");
+        $result = mysqli_query($this->connection,$query);
+
+        $this->FillAnimeCharacter($anime_detail->Characters);
+    }
+    
+    /**
+     * FillAnimeCharacter Writes anime characters into the database
+     *
+     * @param  mixed $anime_character
+     * @return void
+     */
+    function FillAnimeCharacter($anime_characters)
+    {
+        foreach($anime_characters as $anime_character)
+        {
+            $query = sprintf("INSERT INTO `Anime_Character` (characterID,animeID,name,role,image,favorites,url
+            VALUES ('%d','%d','%s','%s','%s','%d','%s')",
+            $anime_character->ID,
+            $anime_character->animeID,
+            mysqli_real_escape_string($this->connection,$anime_character->name),
+            $anime_character->role,
+            mysqli_real_escape_string($this->connection,$anime_character->image),
+            $anime_character->favorites,
+            mysqli_real_escape_string($this->connection,$anime_character->url)
+            );
+            $result = mysqli_query($this->connection,$query);
+        }
+    }
+    
+    /**
      * getAnime Retrieves Anime array from Database
      *
      * @param  mixed $where

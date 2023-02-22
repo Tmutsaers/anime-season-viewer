@@ -50,6 +50,7 @@ class AnimeManager
     function displayDetailPage($post = array())
     {
         $animeDetail = Handler::handleGetFullAnime($post);
+        //var_dump(json_encode($animeDetail));
         
         $this->tpl->assign('animeDetail',$animeDetail);
         $this->tpl->assign('currentPage', self::$TPL_PATH . self::$ANIMEDETAIL);

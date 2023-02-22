@@ -5,7 +5,7 @@ namespace Module\HttpClient;
 class Anime 
 {
     public $name;
-    public $day;
+    public $day = "No day given";
     public $description;
     public $image;
     public $url;
