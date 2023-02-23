@@ -146,13 +146,24 @@ class Handler
     {
         $animeID = $Post['animeID'];
 
+        $query = "WHERE id='".$animeID."'";
+        $animeResult = self::$dbConnection->getAnime($query,"Anime_Detail");
+
+        if(is_null($animeResult) || empty($animeResult) === false)
+        {
+            return self::$dbConnection->processAnimeDetailDB($animeResult[0],$animeID);
+        }
+
         $answer = self::makeWebRequest('https://api.jikan.moe/v4/anime/' . $animeID . '/full');
 
         $processed = main::processAnimeDetailJSON(json_decode($answer,true));
 
         $character_answer = self::makeWebRequest('https://api.jikan.moe/v4/anime/'. $animeID . '/characters');
 
-        $processed->Characters = main::processCharactersJSON(json_decode($character_answer,true));
+        $processed->Characters = main::processCharactersJSON(json_decode($character_answer,true),$processed->ID);
+
+        self::$dbConnection->FillAnimeDetail($processed);
+
         return $processed;
     }
     
@@ -169,10 +180,10 @@ class Handler
     }
     
     /**
-     * makeWebRequest Unused custom webrequest function
+     * makeWebRequest sends the webrequest (GET) to the specified URL 
      *
      * @param  mixed $requestURL
-     * @return void
+     * @return string
      */
     public static function makeWebRequest($requestURL)
     {

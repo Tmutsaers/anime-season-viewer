@@ -153,7 +153,7 @@ class Main
      * Applies to: AnimeDetail
      *
      * @param  mixed $animeDetail
-     * @return void
+     * @return AnimeDetail
      */
     public static function processAnimeDetailJSON($animeDetail) 
     {
@@ -231,15 +231,20 @@ class Main
      * @param  mixed $animeCharacters
      * @return array
      */
-    public static function processCharactersJSON($animeCharacters): array
+    public static function processCharactersJSON($animeCharacters,$animeID): array
     {
         $characterList = array();
 
         foreach($animeCharacters['data'] as $character => $character_value)
         {
             $character = new Character();
+            $character->ID = $character_value['character']['mal_id'];
+            $character->animeID = $animeID;
             $character->name = $character_value['character']['name'];
+            $character->role = $character_value['role'];
             $character->image = $character_value['character']['images']['jpg']['image_url'];
+            $character->favorites = $character_value['favorites'];
+            $character->url = $character_value['character']['url'];
             $characterList[] = $character;
         }
         return $characterList;

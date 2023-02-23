@@ -50,7 +50,8 @@ class DatabaseInterface
      */
     function FillAnimeDetail($anime_detail)
     {
-        $query = sprintf("INSERT INTO `Anime_Detail` (id,ENname,JPname,day,description,thumbnail,url,additionalInfo
+        // mysqli_report(MYSQLI_REPORT_ERROR);
+        $query = sprintf("INSERT INTO `Anime_Detail` (id,ENname,JPname,day,description,thumbnail,url,additionalInfo)
         VALUES ('%d','%s','%s','%s','%s','%s','%s','%s')",
         $anime_detail->ID, 
         mysqli_real_escape_string($this->connection,$anime_detail->ENname),
@@ -59,11 +60,39 @@ class DatabaseInterface
         mysqli_real_escape_string($this->connection,$anime_detail->description),
         mysqli_real_escape_string($this->connection,$anime_detail->thumbnail),
         mysqli_real_escape_string($this->connection,$anime_detail->url),
-        //TODO: implement addtionalInfo field (JSON string of all the extra fields like episodeAmount,producers etc.)
-        "test");
+        mysqli_real_escape_string($this->connection,$this->mapAdditionalInfotoJson($anime_detail)));
         $result = mysqli_query($this->connection,$query);
 
         $this->FillAnimeCharacter($anime_detail->Characters);
+    }
+    
+    /**
+     * mapAdditionalInfotoJson Encodes additional info to a JSON string to prevent to many columns in the database
+     *
+     * @param  mixed $detail
+     * @return string
+     */
+    function mapAdditionalInfotoJson($detail) : string
+    {
+        $arrayToConvert = array(
+            "episodeAmount" => $detail->episodeAmount,
+            "startDate" => $detail->startDate,
+            "endDate" => $detail->endDate,
+            "score" => $detail->score,
+            "rank" => $detail->rank,
+            "popularity" => $detail->popularity,
+            "favorites" => $detail->favorites,
+            "season" => $detail->season,
+            "year" => $detail->year,
+            "producers" => $detail->producers,
+            "studios" => $detail->studios,
+            "genres" => $detail->genres,
+            "themes" => $detail->themes,
+            "demographics" => $detail->demographics,
+            "streamedOn" => $detail->streamedOn
+        );
+
+        return json_encode($arrayToConvert);
     }
     
     /**
@@ -76,7 +105,7 @@ class DatabaseInterface
     {
         foreach($anime_characters as $anime_character)
         {
-            $query = sprintf("INSERT INTO `Anime_Character` (characterID,animeID,name,role,image,favorites,url
+            $query = sprintf("INSERT INTO `Anime_Character` (characterID,animeID,name,role,image,favorites,url)
             VALUES ('%d','%d','%s','%s','%s','%d','%s')",
             $anime_character->ID,
             $anime_character->animeID,
@@ -86,6 +115,7 @@ class DatabaseInterface
             $anime_character->favorites,
             mysqli_real_escape_string($this->connection,$anime_character->url)
             );
+            
             $result = mysqli_query($this->connection,$query);
         }
     }
@@ -95,7 +125,7 @@ class DatabaseInterface
      *
      * @param  mixed $where
      * @param  mixed $table
-     * @return void
+     * @return array
      */
     function getAnime($where = "", $table = "Anime")
     {
@@ -142,5 +172,84 @@ class DatabaseInterface
         });
 
         return $animeSeason;
+    }
+    
+    /**
+     * processAnimeDetailDB Maps the retrieved animeDetaildata to an AnimeDetail object
+     *
+     * @param  mixed $animeResult
+     * @param  mixed $animeID
+     * @return AnimeDetail
+     */
+    function processAnimeDetailDB($animeResult,$animeID)
+    {
+        $animeDetail = new AnimeDetail();
+        $animeDetail->ENname = $animeResult['ENname'];
+        $animeDetail->JPname = $animeResult['JPname'];
+        $animeDetail->day = $animeResult['day'];
+        $animeDetail->description = $animeResult['description'];
+        $animeDetail->thumbnail = $animeResult['thumbnail'];
+        $animeDetail->url = $animeResult['url'];
+        $animeDetail->ID = $animeResult['id'];
+        $animeDetail->Characters = $this->processAnimeCharacters($animeID);
+        $animeDetail = $this->mapJsontoAdditionalInfo($animeDetail, $animeResult['additionalInfo']);
+
+        return $animeDetail;
+    }
+    
+    /**
+     * processAnimeCharacters retrieves and maps the appropiate characters to the animedetail object
+     *
+     * @param  mixed $animeID
+     * @return array
+     */
+    function processAnimeCharacters($animeID)
+    {
+        $query = "WHERE animeID = '".$animeID."'";
+        $charResult = $this->getAnime($query,"Anime_Character");
+
+        $characters = array();
+        foreach($charResult as $animeChar)
+        {
+            $char = new Character();
+            $char->ID = $animeChar['characterID'];
+            $char->animeID = $animeChar['animeID'];
+            $char->name = $animeChar['name'];
+            $char->role = $animeChar['role'];
+            $char->image = $animeChar['image'];
+            $char->favorites = $animeChar['favorites'];
+            $char->url = $animeChar['url'];
+            $characters[] = $char;
+        }
+        return $characters;
+    }
+    
+    /**
+     * mapJsontoAdditionalInfo maps the extra info to the remaining fields of AnimeDetail
+     *
+     * @param  mixed $animeDetail
+     * @param  mixed $extraInfoJSON
+     * @return AnimeDetail
+     */
+    function mapJsontoAdditionalInfo($animeDetail, $extraInfoJSON)
+    {
+        $decodedJSON = json_decode($extraInfoJSON, true);
+
+        $animeDetail->episodeAmount = $decodedJSON['episodeAmount'];
+        $animeDetail->startDate = $decodedJSON['startDate'];
+        $animeDetail->endDate = $decodedJSON['endDate'];
+        $animeDetail->score = $decodedJSON['score'];
+        $animeDetail->rank = $decodedJSON['rank'];
+        $animeDetail->popularity = $decodedJSON['popularity'];
+        $animeDetail->favorites = $decodedJSON['favorites'];
+        $animeDetail->season = $decodedJSON['season'];
+        $animeDetail->year = $decodedJSON['year'];
+        $animeDetail->producers = $decodedJSON['producers'];
+        $animeDetail->studios = $decodedJSON['studios'];
+        $animeDetail->genres = $decodedJSON['genres'];
+        $animeDetail->themes = $decodedJSON['themes'];
+        $animeDetail->demographics = $decodedJSON['demographics'];
+        $animeDetail->streamedOn = $decodedJSON['streamedOn'];
+        return $animeDetail;   
     }
 }
