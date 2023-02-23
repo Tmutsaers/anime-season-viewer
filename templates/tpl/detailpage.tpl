@@ -1,4 +1,3 @@
-{debug}
 <div class="anime-detail_container">
     <div class="anime-detail_title">
         <h1>{$animeDetail->ENname}</h1>
