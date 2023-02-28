@@ -1,6 +1,10 @@
 {* {run_function cClass="Module\HttpClient\Main" pFunction="getCurrentSeason" aParameters=[] aVariable="animes" bStatic=false} *}
 <div class="animes_container">
     <div class="animes__inner-title">
+        <div class="animes__inner-icons">
+            <i class="fa-solid fa-border-all" id="detail-view" onclick="changeLayout('detail')"></i>
+            <i class="fa-solid fa-list" id="list-view" onclick="changeLayout('list')"></i>
+        </div>
         <h1 class="animes-general-title">Animes airing this season</h1>
     </div>
     <div class="animes_inner">
@@ -43,5 +47,55 @@
         let IDinput = document.getElementById("anime_ID-value");
         IDinput.value = ID;
         form.submit();
+    }
+
+    function changeLayout(layout = "detail")
+    {
+        let anime__inner = document.getElementsByClassName("anime__inner");
+        let anime__inner_top = document.getElementsByClassName("anime__inner-top");
+        let anime__inner_image = document.getElementsByClassName("anime__inner-image");
+
+        if(layout == "list")
+        {
+            for(const element of anime__inner)
+            {
+                element.style.flexDirection = "row";
+            }
+
+            for(const element of anime__inner_top)
+            {
+                element.style.display = "flex";
+                element.style.flexDirection = "column";
+            }
+
+            for(const element of anime__inner_image)
+            {
+                element.style.marginLeft = "0px";
+                element.style.marginRight = "0px";
+                element.style.paddingLeft = "10px";
+                element.style.paddingBottom = "10px";
+            }
+        }
+        if(layout == "detail")
+        {
+            for(const element of anime__inner)
+            {
+                element.style.flexDirection = "column";
+            }
+
+            for(const element of anime__inner_top)
+            {
+                element.style.display = "initial";
+            }
+
+            for(const element of anime__inner_image)
+            {
+                element.style.marginLeft = "50px";
+                element.style.marginRight = "50px";
+                element.style.paddingLeft = "0px";
+                element.style.paddingBottom = "0px";
+            }          
+        }
+
     }
 </script>

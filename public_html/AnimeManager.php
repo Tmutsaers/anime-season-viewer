@@ -78,6 +78,13 @@ class AnimeManager
     {
         $this->tpl->assign('currentPage', self::$TPL_PATH . self::$SEARCHPICKER);
         $this->tpl->assign('genres', self::$Genres);
+        $this->tpl->assign('SEARCH_VALUE','');
+        $this->tpl->assign('STATUS_VALUE','Complete');
+        $this->tpl->assign('GENRE_ID_VALUE', 1);
+        $this->tpl->assign('GENRE_NAME_VALUE', 'Action');
+        $this->tpl->assign('ORDERBY_VALUE','mal_id');
+        $this->tpl->assign('SORT_VALUE','desc');
+
         $this->tpl->display('index.tpl');
     }
     
@@ -90,10 +97,20 @@ class AnimeManager
     function displaySearchPicked($post = array())
     {
         $animes = Handler::handlePostSearch($post);
+        //var_dump($post);
+        //var_dump(self::$Genres);
+        $chosenGenre = Handler::getGenrebyID(self::$Genres,$post['genres']);
 
         $this->tpl->assign('animes', $animes);
         $this->tpl->assign('currentPage', self::$TPL_PATH . self::$SEARCHPICKER);
         $this->tpl->assign('genres', self::$Genres);
+        $this->tpl->assign('SEARCH_VALUE',$post['q']);
+        $this->tpl->assign('STATUS_VALUE',$post['status']);
+        $this->tpl->assign('GENRE_ID_VALUE', $chosenGenre->mal_id);
+        $this->tpl->assign('GENRE_NAME_VALUE', $chosenGenre->name);
+        $this->tpl->assign('ORDERBY_VALUE',$post['orderby']);
+        $this->tpl->assign('SORT_VALUE',$post['sort']);
+
         $this->tpl->display('index.tpl');
     }
     

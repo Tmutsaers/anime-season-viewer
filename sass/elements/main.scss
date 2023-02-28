@@ -3,6 +3,16 @@
 
     .animes__inner-title {
         @apply pt-2;
+        @apply relative;
+
+        .animes__inner-icons {
+            @apply absolute -bottom-10 left-0 pl-2;
+        }
+
+        #detail-view,#list-view {
+            @apply text-emerald-400 text-xl cursor-pointer;
+            @apply text-3xl;
+        }
 
         .animes-general-title {
             @apply text-center;

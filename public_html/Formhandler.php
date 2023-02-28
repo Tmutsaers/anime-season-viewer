@@ -2,6 +2,7 @@
 
 namespace Module\HttpClient;
 
+use Genre;
 use Module\HttpClient\DatabaseInterface;
 
 require '..\modules\HttpClient\Weekdays.php';
@@ -87,6 +88,18 @@ class Handler
 
         $processed = main::processJSON(json_decode($answer,true));
         return $processed;
+    }
+
+    public static function getGenrebyID($Genres,$ID)
+    {
+        foreach($Genres as $genre)
+        {
+            if( $ID == $genre->mal_id)
+            {
+                return $genre;
+            }
+        }
+        return false;
     }
     
     /**

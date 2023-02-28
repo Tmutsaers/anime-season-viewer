@@ -1,3 +1,4 @@
+{debug}
 <div class="searchpicker_container">
     <div class="searchpicker_title">
         <h1>Search for anime by name</h1>
@@ -5,21 +6,24 @@
     <div class="searchpicker__inner">
         <form class="searchpicker__inner-form" id="searchpickerForm" action="searchpicked" method="post">
             <label for="searchInput">Name:</label>
-            <input type="text" id="searchInput" name="q">
+            <input type="text" id="searchInput" name="q" value="{$SEARCH_VALUE}">
             <label for="statusInput">Status</label>
             <select name="status" id="statusInput">
+                <option value="{$STATUS_VALUE}" selected hidden>{$STATUS_VALUE}</option>
                 <option value="airing">Airing</option>
                 <option value="complete">Complete</option>
                 <option value="upcoming">Upcoming</option>
             </select>
-            <label for="genreInput">Genre</label>
-            <select name="genre" id="genreInput">
+            <label for="genreInput">Genres</label>
+            <select name="genres" id="genreInput">
+                <option value="{$GENRE_ID_VALUE}" selected hidden>{$GENRE_NAME_VALUE}</option>
                 {foreach $genres as $genre}
                     <option value="{$genre->mal_id}">{$genre->name}</option>
                 {/foreach}
             </select>
             <label for="orderbyInput">Order by</label>
             <select name="orderby" id="orderbyInput">
+                <option value="{$ORDERBY_VALUE}" selected hidden>{$ORDERBY_VALUE}</option>
                 <option value="mal_id">ID</option>
                 <option value="title">Title</option>
                 <option value="type">Type</option>
@@ -36,6 +40,7 @@
             </select>
             <label for="sortInput">Sort</label>
             <select name="sort" id="sortInput">
+                <option value="{$SORT_VALUE}" selected hidden>{$SORT_VALUE}</option>
                 <option value="desc">Descending</option>
                 <option value="asc">Ascending</option>
             </select>
