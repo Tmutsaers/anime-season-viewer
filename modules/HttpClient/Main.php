@@ -142,7 +142,9 @@ class Main
             $anime->image = $anime_value['images']['jpg']['image_url'];
             $anime->description = is_null($anime_value['synopsis']) ? "No description given by MAL." : $anime_value['synopsis'];
             $anime->url = $anime_value['url'];
-            // $anime->ID = $anime_value['mal_id'];
+            $anime->year = $anime_value['year'];
+            $anime->season = $anime_value['season'];
+            $anime->ID = $anime_value['mal_id'];
             $animeList[] = $anime;
         }
         return $animeList;

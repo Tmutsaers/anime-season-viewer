@@ -89,7 +89,7 @@
                     }
     
                     .anime__inner-description {
-                        @apply max-h-20 overflow-hidden;
+                        @apply max-h-36 overflow-hidden;
                         @apply py-2 px-2 mt-[20px] mb-[20px];
     
                         &:hover {
@@ -108,6 +108,36 @@
                     }
 
                 }
+            }
+        }
+    }
+
+    #listview {
+        /* @apply flex-row; */
+        @apply grid grid-cols-12;
+
+        #listview-top {
+            @apply col-span-5;
+            @apply flex flex-col;
+
+            #listview-image {
+                @apply mx-0 pl-[10px] pb-[10px];
+            }
+        }
+        .anime__inner-bottom {
+            @apply col-span-7;
+        }
+
+    }
+
+    #detailview {
+        @apply flex-col;
+
+        #detailview-top {
+            display: revert;
+
+            #detailview-image {
+                @apply mx-[50px] pl-0 pb-0;
             }
         }
     }
