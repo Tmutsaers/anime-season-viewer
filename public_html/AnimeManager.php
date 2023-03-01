@@ -28,6 +28,7 @@ class AnimeManager
         $this->initNav();
         self::$Genres = FileReader::ReadGenres();
         Handler::initDBConnection();
+        $this->deleteExpiredData();
     }
     
     /**
@@ -184,5 +185,10 @@ class AnimeManager
         $this->tpl->assign('YEAR_VALUE','2023');
         $this->tpl->assign('SEASON_VALUE','Winter');
         $this->tpl->display('index.tpl');
+    }
+
+    function deleteExpiredData()
+    {
+        Handler::$dbConnection->deleteExpired();
     }
 }
