@@ -14,7 +14,7 @@
     .anime-detail__inner {
         @apply grid grid-cols-12;
         @apply gap-x-5;
-        @apply bg-[#044533] rounded-lg p-5;
+        @apply bg-[#044533] rounded-lg p-5 mb-3;
 
         @apply lg:gap-x-0 lg:gap-y-5;
 
@@ -67,7 +67,31 @@
 
             }
             .anime-detail__inner-extra {
+                @apply flex flex-col gap-y-5 pt-5;
+                @apply items-start;
 
+                .anime-detail__inner-buttonContainer {
+                    .showMoreButton {
+
+                    }
+                }
+
+                #hidden {
+                    @apply hidden;
+                }
+
+                .anime-detail__inner-pictureContainer {
+                    @apply grid grid-cols-12 gap-5;
+
+                    .anime-detail__inner-picture {
+                        @apply col-span-4;
+                        @apply flex items-center;
+
+                        img {
+                            @apply object-cover;
+                        }
+                    }
+                }
             }
         }
     }

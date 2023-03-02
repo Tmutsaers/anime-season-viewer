@@ -153,9 +153,9 @@ class Handler
      * handleGetFullAnime Handles the anime detail screen requests
      *
      * @param  mixed $Post
-     * @return void
+     * @return AnimeDetail
      */
-    public static function handleGetFullAnime($Post)
+    public static function handleGetFullAnime($Post) : AnimeDetail
     {
         $animeID = $Post['animeID'];
 
@@ -174,6 +174,8 @@ class Handler
         $character_answer = self::makeWebRequest('https://api.jikan.moe/v4/anime/'. $animeID . '/characters');
 
         $processed->Characters = main::processCharactersJSON(json_decode($character_answer,true),$processed->ID);
+
+        //TODO Use handleDetailpictures and extend FillAnimeDetail/processAnimeDetailDB to include pictures
 
         self::$dbConnection->FillAnimeDetail($processed);
 
@@ -209,6 +211,19 @@ class Handler
         curl_close($cUrlConnection);
 
         return $answer;
+    }
+    
+    /**
+     * handleAnimeDetailPictures retrieves the relevant anime pictures
+     *
+     * @param  mixed $animeDetail
+     * @return array
+     */
+    public static function handleAnimeDetailPictures($animeDetail) : array
+    {
+        $answer = self::makeWebRequest('https://api.jikan.moe/v4/anime/' . $animeDetail->ID . '/pictures');
+        $Pictures = Main::processAnimePicturesJSON(json_decode($answer,true));
+        return $Pictures;
     }
 }
 

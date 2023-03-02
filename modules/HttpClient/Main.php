@@ -251,6 +251,17 @@ class Main
         }
         return $characterList;
     }
+
+    public static function processAnimePicturesJSON($animePicturesJSON)
+    {
+        $pictureList = array();
+
+        foreach($animePicturesJSON['data'] as $picture => $picture_value)
+        {
+            $pictureList[] = $picture_value['jpg']['image_url'];
+        }
+        return $pictureList;
+    }
 }
 
 

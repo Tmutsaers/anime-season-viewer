@@ -12,6 +12,7 @@ class AnimeDetail
     public $url;
     public $ID;
     public $Characters;
+    public $Pictures;
 
     public $episodeAmount;
     public $startDate;
