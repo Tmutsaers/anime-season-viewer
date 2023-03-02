@@ -11,6 +11,7 @@ class DatabaseInterface
     public $connection;
     public $databaseNameList = array();
     public $currentDate;
+    const TIMETOEXPIRE = 7;
 
     function __construct()
     {
@@ -19,21 +20,26 @@ class DatabaseInterface
         $password = '';
         $database = 'anime_viewer';
 
-        $databaseNameList = array("Anime","Anime_Characters","Anime_Detail");
+        $this->databaseNameList = array("Anime","Anime_Characters","Anime_Detail");
 
         $timezone = new DateTimeZone("Europe/Amsterdam");
         $this->currentDate = date_create_immutable("now",$timezone);
 
         $this->connection = mysqli_connect($servername,$username,$password,$database);
     }
-
+    
+    /**
+     * deleteExpired Removes data older than a week from the database
+     *
+     * @return void
+     */
     function deleteExpired()
     {
         $currentDate = $this->currentDate->format('Y-m-d');
 
         foreach($this->databaseNameList as $database)
         {
-            $query = sprintf("DELETE FROM `%s` WHERE ExpireDate =< '%s'",$database,$currentDate);
+            $query = sprintf("DELETE FROM `%s` WHERE (SELECT DATEDIFF(DateCreated,'%s')) >= %d",$database,$currentDate,self::TIMETOEXPIRE);
             $result = mysqli_query($this->connection,$query);
         }        
     }
@@ -49,7 +55,7 @@ class DatabaseInterface
         // mysqli_report(MYSQLI_REPORT_ERROR);
         foreach($Anime as $anime_value)
         {
-            $query = sprintf("INSERT INTO `Anime` (Name,Day,Description,Image,Url,Year,Season,MalID,ExpireDate)
+            $query = sprintf("INSERT INTO `Anime` (Name,Day,Description,Image,Url,Year,Season,MalID,DateCreated)
             VALUES ('%s','%s','%s','%s','%s','%d','%s','%d','%s')",
             mysqli_real_escape_string($this->connection,$anime_value->name),$anime_value->day,
             mysqli_real_escape_string($this->connection,$anime_value->description),
@@ -57,7 +63,7 @@ class DatabaseInterface
             mysqli_real_escape_string($this->connection,$anime_value->url),
             $anime_value->year,$anime_value->season,
             $anime_value->ID,
-            $this->currentDate->modify('+1 week')->format('Y-m-d')
+            $this->currentDate->format('Y-m-d')
             );
             $result = mysqli_query($this->connection,$query);
         }
@@ -72,7 +78,7 @@ class DatabaseInterface
     function FillAnimeDetail($anime_detail)
     {
         // mysqli_report(MYSQLI_REPORT_ERROR);
-        $query = sprintf("INSERT INTO `Anime_Detail` (id,ENname,JPname,day,description,thumbnail,url,additionalInfo,ExpireDate)
+        $query = sprintf("INSERT INTO `Anime_Detail` (id,ENname,JPname,day,description,thumbnail,url,additionalInfo,DateCreated)
         VALUES ('%d','%s','%s','%s','%s','%s','%s','%s','%s')",
         $anime_detail->ID, 
         mysqli_real_escape_string($this->connection,$anime_detail->ENname),
@@ -82,7 +88,7 @@ class DatabaseInterface
         mysqli_real_escape_string($this->connection,$anime_detail->thumbnail),
         mysqli_real_escape_string($this->connection,$anime_detail->url),
         mysqli_real_escape_string($this->connection,$this->mapAdditionalInfotoJson($anime_detail)),
-        $this->currentDate->modify('+1 week')->format('Y-m-d'));
+        $this->currentDate->format('Y-m-d'));
         $result = mysqli_query($this->connection,$query);
 
         $this->FillAnimeCharacter($anime_detail->Characters);
@@ -127,7 +133,7 @@ class DatabaseInterface
     {
         foreach($anime_characters as $anime_character)
         {
-            $query = sprintf("INSERT INTO `Anime_Character` (characterID,animeID,name,role,image,favorites,url,ExpireDate)
+            $query = sprintf("INSERT INTO `Anime_Character` (characterID,animeID,name,role,image,favorites,url,DateCreated)
             VALUES ('%d','%d','%s','%s','%s','%d','%s','%s')",
             $anime_character->ID,
             $anime_character->animeID,
@@ -136,7 +142,7 @@ class DatabaseInterface
             mysqli_real_escape_string($this->connection,$anime_character->image),
             $anime_character->favorites,
             mysqli_real_escape_string($this->connection,$anime_character->url),
-            $this->currentDate->modify('+1 week')->format('Y-m-d')
+            $this->currentDate->format('Y-m-d')
             );
             
             $result = mysqli_query($this->connection,$query);
