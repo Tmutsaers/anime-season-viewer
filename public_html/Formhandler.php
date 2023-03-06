@@ -176,9 +176,7 @@ class Handler
         $processed->Characters = main::processCharactersJSON(json_decode($character_answer,true),$processed->ID);
 
         sleep(3);
-        $processed->Pictures = Handler::handleAnimeDetailPictures($processed);
-
-        //TODO Use handleAnimeDetailpictures and extend FillAnimeDetail/processAnimeDetailDB to include pictures
+        $processed->Pictures = Handler::handleAnimeDetailPictures($processed);        
 
         self::$dbConnection->FillAnimeDetail($processed);
 

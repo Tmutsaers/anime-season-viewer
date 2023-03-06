@@ -299,9 +299,4 @@ class DatabaseInterface
         $animeDetail->streamedOn = $decodedJSON['streamedOn'];
         return $animeDetail;   
     }
-
-    // function mapJsontoPictures($animeDetail, $imagesJSON)
-    // {
-    //     return json_decode($)
-    // }
 }
