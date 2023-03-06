@@ -77,9 +77,9 @@ class DatabaseInterface
      */
     function FillAnimeDetail($anime_detail)
     {
-        // mysqli_report(MYSQLI_REPORT_ERROR);
-        $query = sprintf("INSERT INTO `Anime_Detail` (id,ENname,JPname,day,description,thumbnail,url,additionalInfo,DateCreated)
-        VALUES ('%d','%s','%s','%s','%s','%s','%s','%s','%s')",
+        //mysqli_report(MYSQLI_REPORT_ERROR);
+        $query = sprintf("INSERT INTO `Anime_Detail` (id,ENname,JPname,day,description,thumbnail,url,additionalInfo,images,DateCreated)
+        VALUES ('%d','%s','%s','%s','%s','%s','%s','%s','%s','%s')",
         $anime_detail->ID, 
         mysqli_real_escape_string($this->connection,$anime_detail->ENname),
         mysqli_real_escape_string($this->connection,$anime_detail->JPname),
@@ -88,10 +88,27 @@ class DatabaseInterface
         mysqli_real_escape_string($this->connection,$anime_detail->thumbnail),
         mysqli_real_escape_string($this->connection,$anime_detail->url),
         mysqli_real_escape_string($this->connection,$this->mapAdditionalInfotoJson($anime_detail)),
+        mysqli_real_escape_string($this->connection,$this->mapPictureUrlsToJson($anime_detail)),
         $this->currentDate->format('Y-m-d'));
         $result = mysqli_query($this->connection,$query);
 
         $this->FillAnimeCharacter($anime_detail->Characters);
+    }
+    
+    /**
+     * mapPictureUrlsToJson
+     *
+     * @param  mixed $detail
+     * @return string
+     */
+    function mapPictureUrlsToJson($detail) : string
+    {
+        $arrayToConvert = array();
+        foreach($detail->Pictures as $picture)
+        {
+            $arrayToConvert[] = $picture;
+        }
+        return json_encode($arrayToConvert);
     }
     
     /**
@@ -222,6 +239,7 @@ class DatabaseInterface
         $animeDetail->ID = $animeResult['id'];
         $animeDetail->Characters = $this->processAnimeCharacters($animeID);
         $animeDetail = $this->mapJsontoAdditionalInfo($animeDetail, $animeResult['additionalInfo']);
+        $animeDetail->Pictures = json_decode($animeResult['images'],null,512,JSON_OBJECT_AS_ARRAY);
 
         return $animeDetail;
     }
@@ -281,4 +299,9 @@ class DatabaseInterface
         $animeDetail->streamedOn = $decodedJSON['streamedOn'];
         return $animeDetail;   
     }
+
+    // function mapJsontoPictures($animeDetail, $imagesJSON)
+    // {
+    //     return json_decode($)
+    // }
 }
