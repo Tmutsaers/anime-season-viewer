@@ -20,12 +20,13 @@ class DatabaseInterface
         $password = '';
         $database = 'anime_viewer';
 
-        $this->databaseNameList = array("Anime","Anime_Characters","Anime_Detail");
+        $this->databaseNameList = array("Anime","Anime_Character","Anime_Detail");
 
         $timezone = new DateTimeZone("Europe/Amsterdam");
         $this->currentDate = date_create_immutable("now",$timezone);
 
         $this->connection = mysqli_connect($servername,$username,$password,$database);
+        mysqli_report(MYSQLI_REPORT_OFF);
     }
     
     /**
