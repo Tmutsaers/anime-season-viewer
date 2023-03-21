@@ -8,14 +8,6 @@
 
     $_page = isset($_REQUEST['page']) ? $_REQUEST['page'] : 'currentSeason';
 
-    //var_dump($_REQUEST);
-
-    // $animeManager->displayEmptySeasonPicker();
-
-    // var_dump($_GET);
-    // echo("==============================================================");
-    // var_dump($_SERVER);
-
     switch($_page)
     {
         case 'animedetail':
