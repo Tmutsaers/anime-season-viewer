@@ -9,7 +9,7 @@ class SmartySingleton
     {
         if (!isset(self::$instance))
         {
-            $smarty = new Smarty();
+            $smarty = new \Smarty();
 
             $smarty->setTemplateDir('../templates');
             $smarty->setConfigDir('../config');

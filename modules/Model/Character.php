@@ -1,6 +1,6 @@
 <?php
 
-namespace Module\HttpClient;
+namespace Module\Model;
 
 class Character
 {

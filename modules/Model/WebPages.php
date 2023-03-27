@@ -1,8 +1,8 @@
 <?php
 
-namespace Module\HttpClient;
+namespace Module\Model;
 
-require '..\modules\HttpClient\Webpage.php';
+use Module\Model\WebPage;
 
 /**
  * WebPages All the internal webpages are listed here

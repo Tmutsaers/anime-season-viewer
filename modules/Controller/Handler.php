@@ -1,13 +1,11 @@
 <?php
 
-namespace Module\HttpClient;
+namespace Module\Controller;
 
-use Genre;
-use Module\HttpClient\DatabaseInterface;
-
-require '..\modules\HttpClient\Weekdays.php';
-require '..\modules\HttpClient\Main.php';
-require '..\modules\HttpClient\Anime.php';
+use Module\Controller\DatabaseInterface;
+use Module\Model\AnimeDetail;
+use Module\Model\Weekdays;
+use Module\Model\Anime;
 
 class Handler
 {

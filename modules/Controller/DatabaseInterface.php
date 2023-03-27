@@ -1,10 +1,9 @@
 <?php
 
-namespace Module\HttpClient;
+namespace Module\Controller;
 
 use DateTimeZone;
-use Module\HttpClient\Anime;
-use Module\HttpClient\Weekdays;
+use Module\Model\{Anime,Weekdays,AnimeDetail,Character};
 
 class DatabaseInterface
 {

@@ -1,6 +1,8 @@
 <?php
 
-require ".\\Genre.php";
+namespace Module\Controller;
+
+use Module\Model\Genre;
 
 class FileReader
 {

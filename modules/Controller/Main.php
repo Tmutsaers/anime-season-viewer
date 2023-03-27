@@ -1,11 +1,8 @@
 <?php
 
-namespace Module\HttpClient;
+namespace Module\Controller;
 
-
-use Module\HttpClient\Anime;
-use Module\HttpClient\AnimeDetail;
-use Module\HttpClient\Weekdays;
+use Module\Model\{Anime,AnimeDetail,Weekdays,Character};
 
 /**
  * Main Handles the Curl/REST requests to the JIKAN MOE API

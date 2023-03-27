@@ -1,13 +1,21 @@
 <?php
 
-use Module\HttpClient\Handler;
-use Module\HttpClient\WebPages;
+namespace Module\Controller;
 
-require './smartyContainer.php';
-require './Formhandler.php';
-require './Webpages.php';
-require './FileReader.php';
-require './DatabaseInterface.php';
+use Module\Controller\Handler;
+use Module\Model\WebPages;
+use Module\Model\WebPage;
+use Module\Controller\DatabaseInterface;
+use Module\Controller\FileReader;
+use Module\SmartySingleton;
+
+require "..\\..\\public_html\\smartyContainer.php";
+
+//require 'smartyContainer.php';
+// require './Controller/Formhandler.php';
+// require './Model/Webpages.php';
+// require './Controller/FileReader.php';
+// require './Controller/DatabaseInterface.php';
 
 class AnimeManager
 {
@@ -24,7 +32,7 @@ class AnimeManager
 
     function __construct()
     {
-        $this->tpl = SmartySingleton::instance();
+        $this->tpl = \SmartySingleton::instance();
         $this->initNav();
         self::$Genres = FileReader::ReadGenres();
         Handler::initDBConnection();
